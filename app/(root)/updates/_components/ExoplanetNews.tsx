@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import ExoplanetCard from './ExoplanetCard'
+import NewsCard from './NewsCard'
 
 type NewsItem = {
   title: string
@@ -28,9 +29,9 @@ const ExoplanetNews = () => {
     <div className="space-y-4">
       <h2 className="text-xl font-bold">Latest Exoplanet News</h2>
       {news.length === 0 && <p>Loading...</p>}
-      <div className="flex flex-wrap gap-6">
+      <div className="grid md:grid-cols-3 gap-4 gap-y-3">
         {news.map((item, i) => (
-          <ExoplanetCard
+          <NewsCard
             key={i}
             title={item.title}
             content={item.content}
