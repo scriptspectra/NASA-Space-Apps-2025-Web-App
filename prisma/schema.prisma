@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------
+// Exoplanets Table
+// -----------------------------
+model Planet {
+  pl_name   String  @id               // Planet name as unique identifier
+  hostname  String                      // Host star name
+  pl_rade   Float?                      // Planet radius (Earth radii), optional
+  pl_orbper Float?                      // Orbital period (days), optional
+  pl_masse  Float?                      // Planet mass (optional, kg or Earth masses)
+  discovery String?                     // Discovery method or year (optional)
+  updatedAt DateTime @updatedAt @default(now()) // Optional timestamp for updates
+}
