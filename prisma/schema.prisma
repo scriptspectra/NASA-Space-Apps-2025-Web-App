@@ -14,15 +14,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// -----------------------------
-// Exoplanets Table
-// -----------------------------
 model Planet {
-  pl_name   String  @id               // Planet name as unique identifier
-  hostname  String                      // Host star name
-  pl_rade   Float?                      // Planet radius (Earth radii), optional
-  pl_orbper Float?                      // Orbital period (days), optional
-  pl_masse  Float?                      // Planet mass (optional, kg or Earth masses)
-  discovery String?                     // Discovery method or year (optional)
-  updatedAt DateTime @updatedAt @default(now()) // Optional timestamp for updates
+  pl_name         String  @id
+  hostname        String
+  pl_letter       String? 
+  discoveryMethod String?
+  disc_year       Int?
+  pl_orbper       Float?
+  pl_rade         Float?
+  pl_bmasse       Float?
+  pl_eqt          Float?
+  pl_orbsmax      Float?
+  pl_orbeccen     Float?
+  pl_orbincl      Float?
+  st_teff         Float?
+  st_rad          Float?
+  st_mass         Float?
+  st_met          Float?
+  st_age          Float?
+  sy_dist         Float?
+  imageUrl        String?
+  updatedAt       DateTime @updatedAt @default(now())
 }
