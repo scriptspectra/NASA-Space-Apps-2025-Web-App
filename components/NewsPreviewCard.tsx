@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-interface NewsCardProps {
+interface NewsPreviewCardProps {
   title: string
   source?: string
   content?: string  // made optional
@@ -10,58 +11,44 @@ interface NewsCardProps {
   date?: string
 }
 
-const NewsCard = ({
+const NewsPreviewCard = ({
   title,
   source,
   content,
   link,
   date,
-}: NewsCardProps) => {
+}: NewsPreviewCardProps) => {
   const safeContent = content ?? "" // fallback if undefined
   let displayContent: string
 
-  if (safeContent.length <= 250) {
+  if (safeContent.length <= 100) {
     displayContent = safeContent
   } else {
-    const trimmed = safeContent.slice(0, 250)
+    const trimmed = safeContent.slice(0, 100)
     displayContent = trimmed.slice(0, trimmed.lastIndexOf(" ")) + "..."
   }
 
   return (
     <div className="p-4 flex flex-col dark:bg-[#383838] bg-[#c5c4c4] border-none rounded-md">
       <div className="pb-4 flex">
-        <div className="rounded-lg overflow-hidden mr-1">
-          <Image
-            src="/exo.png"
-            alt="exoplanet"
-            width={100}
-            height={100}
-          />
-        </div>
         <div className="px-5 flex flex-col justify-center">
-          <h1 className="text-2xl font-medium">{title}</h1>
+          <h1 className="text-lg font-medium">{title}</h1>
           {source && <p className="text-xs text-muted-foreground">{source}</p>}
           {date && <p className="text-xs text-muted-foreground">{date}</p>}
         </div>
       </div>
 
       <div className="text-muted-foreground text-sm">
-        {displayContent}
-      </div>
-
-      <div>
-        <Button
-          className="mt-3"
-          variant={"gradientBtn"}
-          asChild
+        {displayContent} 
+        <Link
+        href={'/'}
+        className='text-[#CD6E51]'
         >
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            Read More
-          </a>
-        </Button>
+        Read more
+        </Link>
       </div>
     </div>
   )
 }
 
-export default NewsCard
+export default NewsPreviewCard
