@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { Bell, Eye, Home, Orbit, Plus, Settings, Sparkles, Telescope } from 'lucide-react'
+import { Bell, Book, Brain, Eye, Home, Orbit, Plus, Settings, Sparkles, Telescope } from 'lucide-react'
 import { useParams, usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -27,6 +27,11 @@ const Sidebar = () => {
       icon: Orbit,
       href: `/planets`,
       label: "Planets",
+    },
+    {
+      icon: Brain,
+      href: `/learn`,
+      label: "Learn",
     },
     {
       icon: Telescope,
