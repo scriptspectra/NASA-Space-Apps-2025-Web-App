@@ -15,36 +15,41 @@ interface PlanetTypeProps {
 
 const PlanetTypeSection = ({ icon: Icon, title, what, traits, why, funfact, image }: PlanetTypeProps) => {
   return (
-    <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff] my-6 overflow-hidden'>
-      {/* ✅ Image at top */}
+    <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] rounded-md my-6 overflow-hidden grid md:grid-cols-4 gap-6'>
+      {/* Image Column */}
       {image && (
-        <div className="w-full h-48 rounded-md overflow-hidden mb-4">
+        <div className="md:col-span-1 flex items-center justify-center">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            className="w-full h-auto object-contain rounded-md hover:scale-105 transition-transform duration-500"
           />
         </div>
       )}
 
-      {/* Icon + Title */}
-      <div className='flex items-center mb-2'>
-        <Icon className='text-[#D4481E] mr-2' />
-        <h2 className='text-2xl text-[#D4481E] font-semibold'>{title}</h2>
-      </div>
+      {/* Text Column */}
+      <div className='md:col-span-3 py-4 px-6'>
+        {/* Icon + Title */}
+        <div className='flex items-center mb-2'>
+          <Icon className='text-[#D4481E] mr-2' />
+          <h2 className='text-2xl text-[#D4481E] font-semibold'>{title}</h2>
+        </div>
 
-      <p className='p-2'>{what}</p>
+        <p className='p-2'>{what}</p>
 
-      <ul className='list-disc list-inside px-4 text-sm italic text-slate-500'>
-        {traits.map((t, i) => (
-          <li key={i}>{t}</li>
-        ))}
-      </ul>
+        <ul className='list-disc list-inside px-4 text-sm italic text-slate-500'>
+          {traits.map((t, i) => (
+            <li key={i}>{t}</li>
+          ))}
+        </ul>
 
-      <p className='p-2 mt-2'>{why}</p>
+        <p className='p-2 mt-2'>{why}</p>
 
-      <div className='px-4 py-2 border-1 border-[#df4a1dc1] rounded-md mt-2'>
-        <p className='text-sm'><strong>Fun fact:</strong> {funfact}</p>
+        <div className='px-4 py-2 border-1 border-[#df4a1dc1] rounded-md mt-2'>
+          <p className='text-sm'>
+            <strong>Fun fact:</strong> {funfact}
+          </p>
+        </div>
       </div>
     </div>
   )
@@ -54,7 +59,7 @@ const planetTypes = [
   {
     icon: Orbit,
     title: 'Hot Jupiters — The Unexpected Giants',
-    image: '/images/hot-jupiter.jpg',
+    image: '/Hot Jupiters.jpg',
     what: 'Hot Jupiters are enormous gas giants, often larger than Jupiter, that orbit very close to their parent stars — sometimes closer than Mercury is to the Sun. Because of this proximity, their surface temperatures can exceed 1,000°C, and their atmospheres are constantly blasted by intense stellar radiation.',
     traits: [
       'Composed mostly of hydrogen and helium.',
@@ -67,7 +72,7 @@ const planetTypes = [
   {
     icon: Globe,
     title: 'Super-Earths — Bigger Cousins of Our Planet',
-    image: '/images/super-earth.jpg',
+    image: '/Super earth.PNG',
     what: 'Super-Earths are rocky planets with masses roughly 1.5 to 10 times that of Earth. They’re among the most common types of exoplanets in the galaxy — yet oddly, none exist in our Solar System.',
     traits: [
       'Likely to have solid surfaces and possibly active geology.',
@@ -80,7 +85,7 @@ const planetTypes = [
   {
     icon: Sparkles,
     title: 'Mini-Neptunes — The Missing Middle Class',
-    image: '/images/mini-neptune.jpg',
+    image: '/Mini Neptune.jpg',
     what: 'Mini-Neptunes are planets larger than Earth but smaller than Neptune — a “bridge” category between rocky worlds and gas giants. They usually have thick hydrogen-helium atmospheres surrounding icy or rocky cores.',
     traits: [
       'Typically 2 to 4 times Earth’s radius.',
@@ -93,7 +98,7 @@ const planetTypes = [
   {
     icon: Waves,
     title: 'Ocean Worlds — Planets Drowned in Water',
-    image: '/images/ocean-world.jpg',
+    image: '/Ocean world.jpg',
     what: 'Ocean worlds are believed to be covered entirely by vast global oceans, potentially hundreds of kilometers deep. Beneath these oceans, thick layers of ice or high-pressure water phases might exist.',
     traits: [
       'Likely water-rich, with significant amounts of ice and liquid water.',
@@ -106,7 +111,7 @@ const planetTypes = [
   {
     icon: Flame,
     title: 'Lava Worlds — Planets of Fire and Magma',
-    image: '/images/lava-world.jpg',
+    image: '/Lava World.jpg',
     what: 'Lava worlds are rocky planets that orbit so close to their stars that their surfaces are covered with molten rock. Their temperatures often exceed 2,000°C, creating alien environments that are both hostile and fascinating.',
     traits: [
       'Molten surfaces and vaporized rock atmospheres.',
@@ -119,7 +124,7 @@ const planetTypes = [
   {
     icon: Moon,
     title: 'Rogue Planets — The Cosmic Wanderers',
-    image: '/images/rogue-planet.jpg',
+    image: '/Rogue Planet.jpg',
     what: 'Rogue planets are planets without a star. They drift alone through the galaxy, often after being ejected from their original systems by gravitational interactions.',
     traits: [
       'Travel through interstellar space without orbiting a star.',
@@ -152,7 +157,7 @@ const Page = () => {
       </div>
 
       {/* Intro Section */}
-      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff]'>
+      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] py-4 px-8 rounded-md'>
         <p className='p-4'>
           The universe is home to a breathtaking variety of planets — far beyond the eight familiar worlds in our own Solar System. Astronomers have uncovered planets so massive they could swallow Jupiter, others smaller than Mars, some so hot that metals would vaporize on their surfaces, and a few that may even rain diamonds.
         </p>
@@ -161,13 +166,13 @@ const Page = () => {
         </p>
       </div>
 
-      {/* ✅ Planet Type Sections */}
+      {/* Planet Type Sections */}
       {planetTypes.map((type, i) => (
         <PlanetTypeSection key={i} {...type} />
       ))}
 
       {/* Summary */}
-      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff] my-8'>
+      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] py-4 px-8 rounded-md my-8'>
         <div className='flex items-center mb-2'>
           <Info className='text-[#D4481E] mr-2' />
           <h2 className='text-2xl text-[#D4481E] font-semibold'>Summary</h2>
