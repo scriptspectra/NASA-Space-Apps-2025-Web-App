@@ -15,10 +15,10 @@ const MobileSidebar = () => {
   return (
     <>
     <Sheet>
-        <SheetTrigger>
+        <SheetTrigger className="relative z-50">
             <Menu className='text-slate-300'/>
         </SheetTrigger>
-        <SheetContent side='left' className='p-0 dark:bg-[#2A2A2A] pt-10 w-22'>
+        <SheetContent side='left' className='p-0 dark:bg-[#2A2A2A] pt-10 w-22 z-50'>
             <Sidebar />
         </SheetContent>
     </Sheet>

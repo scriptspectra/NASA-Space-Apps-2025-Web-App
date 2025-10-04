@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils'
-import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@clerk/nextjs'
 import { Sparkles } from 'lucide-react'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
@@ -30,23 +29,7 @@ const Navbar = () => {
             </Link>
         </div>
         <div className='flex gap-3'>
-            <SignedIn>
-                <ModeToggle />
-                <div className="dark">
-                    <UserButton
-                        appearance={{
-                            baseTheme: 'dark',
-                            elements: {
-                            userButton: 'bg-gray-900 text-white hover:bg-gray-800',
-                            },
-                        }}
-                    />
-                </div>
-           </SignedIn>
-            <SignedOut>
-                <SignInButton />
-                <SignOutButton />
-            </SignedOut>
+            <ModeToggle />
         </div>
     </div>
   )

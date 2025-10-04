@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import NewsPreviewCard from "@/components/NewsPreviewCard";
 import EventsCalendar from "@/components/Calendar";
-import MainLoader from "@/components/MainLoader"; // your loader component
+import MainLoader from "@/components/MainLoader";
+import { getHasLoadedOnce, setHasLoadedOnce } from '@/lib/loading-state'
 
 type NewsItem = {
   title: string;
@@ -19,9 +20,24 @@ type NewsItem = {
 
 const RootPage = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Only show loading animation if it hasn't been shown before
+    if (!getHasLoadedOnce()) {
+      setLoading(true);
+      
+      // Show animation for 5 seconds
+      const animationTimer = setTimeout(() => {
+        setLoading(false);
+        setHasLoadedOnce(true); // Mark as loaded
+      }, 5000);
+
+      // Cleanup animation timer
+      return () => clearTimeout(animationTimer);
+    }
+
+    // Fetch news data
     const fetchNews = async () => {
       try {
         const res = await fetch("/api/updates");
@@ -29,8 +45,6 @@ const RootPage = () => {
         setNews(data);
       } catch (err) {
         console.error(err);
-      } finally {
-        setLoading(false);
       }
     };
 

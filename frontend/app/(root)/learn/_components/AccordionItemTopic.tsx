@@ -23,8 +23,8 @@ const AccordionItemTopic = ({
             <AccordionContent>
                 <div className='pl-10'>
                     <ul>
-                        { subtopics.map((subtopic) => (
-                            <li className='dark:text-slate-200'>{ subtopic }</li>
+                        { subtopics.map((subtopic, index) => (
+                            <li key={`${title}-subtopic-${index}`} className='dark:text-slate-200'>{ subtopic }</li>
                         )
                         ) }                   
                     </ul>

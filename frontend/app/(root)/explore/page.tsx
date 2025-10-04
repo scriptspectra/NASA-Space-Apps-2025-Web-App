@@ -1,4 +1,8 @@
-import React from 'react'
+"use client";
+
+import React, { useEffect, useState } from 'react'
+import MainLoader from '@/components/MainLoader'
+import { getHasLoadedOnce, setHasLoadedOnce } from '@/lib/loading-state'
 
 import { 
     Tabs,
@@ -13,8 +17,47 @@ import K2Form from './_components/K2Form'
 import KeplerForm from './_components/KeplerForm'
 
 const page = () => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Only show loading animation if it hasn't been shown before
+    if (!getHasLoadedOnce()) {
+      setLoading(true);
+      
+      // Show animation for 5 seconds
+      const timer = setTimeout(() => {
+        setLoading(false);
+        setHasLoadedOnce(true); // Mark as loaded
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
-    <div className='md:pl-25 p-8 md:pt-0'>
+    <div className="relative">
+      {/* Full-page loader overlay */}
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "black",
+            zIndex: 9999,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MainLoader />
+        </div>
+      )}
+
+      {/* Actual page content */}
+      <div className='md:pl-25 p-8 md:pt-0'>
         <div>
             <Tabs defaultValue="tess" className="w-full">
             <TabsList>
@@ -60,14 +103,12 @@ const page = () => {
                             title = "Kepler"
                             subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
                         />
-                        <div>
-
-                        </div>
                     </div>
                 </div>
             </TabsContent>
             </Tabs>        
         </div>
+      </div>
     </div>
   )
 }

@@ -51,7 +51,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className='space-y-4 flex flex-col h-full text-primary dark:bg-secondary border-primary'>
+    <div className='space-y-4 flex flex-col h-full text-primary dark:bg-secondary border-primary relative z-50'>
       <div className='p-3 flex flex-1 justify-center'>
         <div className='space-y-2'>
           { routes.map((route) => (
@@ -59,7 +59,7 @@ const Sidebar = () => {
             onClick={() => onNavigate(route.href)}
               key={route.href}
               className={cn(
-                "text-muted-foreground text-xs group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-[#2A2A2A]/10 rounded-sm transition",
+                "text-muted-foreground text-xs group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-[#2A2A2A]/10 rounded-sm transition relative z-50",
                 pathname === route.href && "bg-primary/10 text-[#CD6E51] border-l-5 border-[#CD6E51]"
               )}
             >
