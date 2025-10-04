@@ -1,20 +1,30 @@
-# Dockerfile.frontend
-FROM node:20-alpine
-
+# ...existing code...
+FROM node:20-bullseye AS builder
 WORKDIR /app
 
-# Copy package files and install dependencies
+# copy lock + package for cacheable install
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# Copy the frontend code
+# copy only frontend source (context is ./frontend)
 COPY . .
-
-# Build Next.js app
 RUN npm run build
 
-# Expose port 3000
+FROM node:20-bullseye-slim AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+
+# install only production deps
+COPY --from=builder /app/package*.json ./
+RUN npm ci --production
+
+# copy build output and public + config
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.* ./
+
 EXPOSE 3000
 
-# Start Next.js
+# ensure package.json start uses "next start"
 CMD ["npm", "start"]
+# ...existing code...
