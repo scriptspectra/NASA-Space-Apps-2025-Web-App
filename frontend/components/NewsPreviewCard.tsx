@@ -42,7 +42,7 @@ const NewsPreviewCard = ({
         {displayContent} 
         <Link
         href={'/'}
-        className='text-[#CD6E51]'
+        className='text-[#2563EB]'
         >
         Read more
         </Link>

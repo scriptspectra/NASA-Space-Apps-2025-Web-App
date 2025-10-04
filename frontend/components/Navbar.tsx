@@ -21,7 +21,7 @@ const Navbar = () => {
             </div>
             <Link href={'/'}>
                 <h1
-                 className={cn('hidden md:block text-xl font-bold text-black md:text-3xl dark:text-[#CD6E51]',
+                 className={cn('hidden md:block text-xl font-bold text-black md:text-3xl dark:text-[#2563EB]',
                             font.className
                 )}>
                     Xplora

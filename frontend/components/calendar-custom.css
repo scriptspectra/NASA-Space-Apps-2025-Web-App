@@ -43,7 +43,7 @@
 
 /* Highlight weekends vertically */
 .custom-calendar .react-calendar__month-view__days__day--weekend {
-  background-color: #cd6e51a6;
+  background-color: #2563EBa6;
   color: #fff;
   border-radius: 0;
 }
@@ -57,7 +57,7 @@
 
 /* Selected date */
 .custom-calendar .react-calendar__tile--active {
-  background-color: #CD6E51;
+  background-color: #2563EB;
   color: #fff;
   border-radius: 4px;
 }
