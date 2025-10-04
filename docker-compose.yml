@@ -1,0 +1,41 @@
+# Docker Compose for NASA Space Apps Web Application
+# Two-service architecture: FastAPI backend + Next.js frontend
+version: "3.8"
+
+services:
+  # FastAPI Backend Service
+  # PRIVATE: No host ports published - only accessible via internal network
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    expose:
+      - "8000" # Internal port only - not published to host
+    networks:
+      - app
+
+  # Next.js Frontend Service
+  # PUBLIC: Only service exposed to host network at http://localhost:3000
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000" # Only public entry point
+    environment:
+      NODE_ENV: "production"
+      # Backend URL for server-side API calls (uses service name)
+      BACKEND_URL: "http://backend:8000"
+    depends_on:
+      - backend
+    networks:
+      - app
+
+# Internal bridge network for service communication
+networks:
+  app:
+    driver: bridge
+# Usage:
+# - Browser access: http://localhost:3000 (frontend only)
+# - Backend is internal: Next.js server calls backend via BACKEND_URL
+# - To expose backend in dev, add 'ports: ["8000:8000"]' to backend service
