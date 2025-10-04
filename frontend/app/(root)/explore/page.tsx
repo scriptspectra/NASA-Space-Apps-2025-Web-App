@@ -38,9 +38,9 @@ const page = () => {
                     <TessForm />
                     <div className='flex justify-center'>
                         <ModelImage 
-                            imageUrl = "/tess.jpg" 
-                            alt = "tess"
-                            title = "Tess"
+                            imageUrl = "/k2_image.jpg" 
+                            alt = "k2"
+                            title = "K2"
                             subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
                         />
                     </div>
