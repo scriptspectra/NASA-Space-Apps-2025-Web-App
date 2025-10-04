@@ -9,6 +9,8 @@ import {
 import TessForm from './_components/TessForm'
 import Image from 'next/image'
 import ModelImage from './_components/ModelImage'
+import K2Form from './_components/K2Form'
+import KeplerForm from './_components/KeplerForm'
 
 const page = () => {
   return (
@@ -35,10 +37,10 @@ const page = () => {
             </TabsContent>
             <TabsContent value="k2">
                 <div className='grid md:grid-cols-2'>
-                    <TessForm />
+                    <K2Form />
                     <div className='flex justify-center'>
                         <ModelImage 
-                            imageUrl = "/k2_image.jpg" 
+                            imageUrl = "/k2.jpg" 
                             alt = "k2"
                             title = "K2"
                             subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
@@ -48,7 +50,7 @@ const page = () => {
             </TabsContent>
             <TabsContent value="kepler">
                 <div className='grid md:grid-cols-2'>
-                    <TessForm />
+                    <KeplerForm />
                     <div className='flex justify-center'>
                         <ModelImage 
                             imageUrl = "/kepler.jpg" 

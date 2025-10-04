@@ -1,36 +1,40 @@
 "use client";
 import { useState } from "react";
 
-export default function TessForm() {
+export default function KeplerForm() {
   const [formData, setFormData] = useState<{ [key: string]: string }>({
-    pl_orbper: "",
-    pl_trandurh: "",
-    pl_trandep: "",
-    pl_rade: "",
-    pl_insol: "",
-    pl_eqt: "",
-    st_tmag: "",
-    st_dist: "",
-    st_teff: "",
-    st_rad: "",
-    st_logg: "",
+    koi_period: "",
+    koi_time0bk: "",
+    koi_impact: "",
+    koi_duration: "",
+    koi_depth: "",
+    koi_model_snr: "",
+    koi_prad: "",
+    koi_teq: "",
+    koi_insol: "",
+    koi_steff: "",
+    koi_slogg: "",
+    koi_srad: "",
+    koi_kepmag: "",
   });
 
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const labels: { [key: string]: string } = {
-    pl_orbper: "Planet Orbital Period [days]",
-    pl_trandurh: "Planet Transit Duration [hours]",
-    pl_trandep: "Planet Transit Depth [ppm]",
-    pl_rade: "Planet Radius [R_Earth]",
-    pl_insol: "Planet Insolation [Earth flux]",
-    pl_eqt: "Planet Equilibrium Temperature [K]",
-    st_tmag: "TESS Magnitude",
-    st_dist: "Stellar Distance [pc]",
-    st_teff: "Stellar Effective Temperature [K]",
-    st_rad: "Stellar Radius [R_Sun]",
-    st_logg: "Stellar log(g) [cm/s²]",
+    koi_period: "Orbital Period [days]",
+    koi_time0bk: "Transit Epoch [BKJD]",
+    koi_impact: "Impact Parameter",
+    koi_duration: "Transit Duration [hrs]",
+    koi_depth: "Transit Depth [ppm]",
+    koi_model_snr: "Transit Signal-to-Noise Ratio",
+    koi_prad: "Planetary Radius [Earth radii]",
+    koi_teq: "Equilibrium Temperature [K]",
+    koi_insol: "Insolation Flux [Earth flux]",
+    koi_steff: "Stellar Effective Temperature [K]",
+    koi_slogg: "Stellar Surface Gravity [log10(cm/s**2)]",
+    koi_srad: "Stellar Radius [Solar radii]",
+    koi_kepmag: "Kepler Magnitude",
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +54,7 @@ export default function TessForm() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/inference/tess", {
+      const response = await fetch("http://127.0.0.1:8000/inference/kepler", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -80,10 +84,10 @@ export default function TessForm() {
     <div className="p-4 max-w-xl mx-auto w-full">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid md:grid-cols-2 gap-4">
-            {Object.keys(formData).map((key) => (
+          {Object.keys(formData).map((key) => (
             <label key={key} className="block">
-                <span className="block font-medium mb-1">{labels[key]}</span>
-                <input
+              <span className="block font-medium mb-1">{labels[key]}</span>
+              <input
                 type="number"
                 step="any"
                 name={key}
@@ -92,9 +96,9 @@ export default function TessForm() {
                 placeholder={labels[key]}
                 className="border p-2 w-full rounded"
                 required
-                />
+              />
             </label>
-            ))}
+          ))}
         </div>
         <button
           type="submit"

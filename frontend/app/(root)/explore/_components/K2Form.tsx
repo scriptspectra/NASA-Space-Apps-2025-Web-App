@@ -1,36 +1,40 @@
 "use client";
 import { useState } from "react";
 
-export default function TessForm() {
+export default function K2Form() {
   const [formData, setFormData] = useState<{ [key: string]: string }>({
+    sy_snum: "",
+    sy_pnum: "",
+    discoverymethod: "",
+    disc_facility: "",
+    soltype: "",
+    pl_controv_flag: "",
     pl_orbper: "",
-    pl_trandurh: "",
-    pl_trandep: "",
-    pl_rade: "",
-    pl_insol: "",
-    pl_eqt: "",
-    st_tmag: "",
-    st_dist: "",
-    st_teff: "",
+    ttv_flag: "",
     st_rad: "",
-    st_logg: "",
+    sy_dist: "",
+    sy_vmag: "",
+    sy_kmag: "",
+    sy_gaiamag: "",
   });
 
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const labels: { [key: string]: string } = {
+    sy_snum: "Number of Stars in System",
+    sy_pnum: "number of Planets in System",
+    discoverymethod: "Discovery Method",
+    disc_facility: "Discovery Facility",
+    soltype: "Solution Type",
+    pl_controv_flag: "Controversial Flag",
     pl_orbper: "Planet Orbital Period [days]",
-    pl_trandurh: "Planet Transit Duration [hours]",
-    pl_trandep: "Planet Transit Depth [ppm]",
-    pl_rade: "Planet Radius [R_Earth]",
-    pl_insol: "Planet Insolation [Earth flux]",
-    pl_eqt: "Planet Equilibrium Temperature [K]",
-    st_tmag: "TESS Magnitude",
-    st_dist: "Stellar Distance [pc]",
-    st_teff: "Stellar Effective Temperature [K]",
-    st_rad: "Stellar Radius [R_Sun]",
-    st_logg: "Stellar log(g) [cm/s²]",
+    ttv_flag: "transit Time Variations Flag",
+    st_rad: "Stellar Radius [Solar Radius]",
+    sy_dist: "System Distance [pc]",
+    sy_vmag: "V (Johnson) Magnitude",
+    sy_kmag: "Ks (2MASS) Magnitude",
+    sy_gaiamag: "Gaia magnitude",
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +54,7 @@ export default function TessForm() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/inference/tess", {
+      const response = await fetch("http://127.0.0.1:8000/inference/k2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

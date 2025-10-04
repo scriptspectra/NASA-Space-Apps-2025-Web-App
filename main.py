@@ -7,7 +7,7 @@ import numpy as np
 
 app = FastAPI(title="Exoplanet ONNX Inference API")
 
-# ✅ Allow frontend (Next.js) to talk to backend
+# ✅ CORS for frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -16,42 +16,67 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Load model once on startup
-model_path = "models/TESS_Model.onnx"
+# ✅ Load all three models
+tess_model_path = "models/TESS_Model.onnx"
+k2_model_path = "models/k2_model.onnx"
+kepler_model_path = "models/koi_model.onnx"  # ✅ Add your model here
+
 try:
-    model_session = ort.InferenceSession(model_path)
+    tess_session = ort.InferenceSession(tess_model_path)
 except Exception as e:
-    raise RuntimeError(f"Failed to load ONNX model: {e}")
+    raise RuntimeError(f"Failed to load TESS model: {e}")
+
+try:
+    k2_session = ort.InferenceSession(k2_model_path)
+except Exception as e:
+    raise RuntimeError(f"Failed to load K2 model: {e}")
+
+try:
+    kepler_session = ort.InferenceSession(kepler_model_path)  # ✅ New session
+except Exception as e:
+    raise RuntimeError(f"Failed to load Kepler model: {e}")
 
 class InferenceRequest(BaseModel):
     inputs: Dict[str, Any]
 
-def run_inference(inputs: Dict[str, Any]) -> Dict[str, Any]:
+def run_inference(session, inputs: Dict[str, Any]) -> Dict[str, Any]:
     try:
         input_feed = {
             name: np.array(data, dtype=np.float32)
             for name, data in inputs.items()
         }
 
-        outputs = model_session.run(None, input_feed)
-        output_names = [o.name for o in model_session.get_outputs()]
+        outputs = session.run(None, input_feed)
+        output_names = [o.name for o in session.get_outputs()]
 
         result = {}
         for i, output in enumerate(outputs):
             name = output_names[i] if i < len(output_names) else f"output_{i}"
-            if hasattr(output, "tolist"):
-                result[name] = output.tolist()
-            else:
-                result[name] = output
+            result[name] = output.tolist() if hasattr(output, "tolist") else output
 
         return {"status": "success", "outputs": result}
 
     except Exception as e:
         return {"status": "error", "error": str(e)}
 
-@app.post("/inference")
-async def inference(request: InferenceRequest):
-    result = run_inference(request.inputs)
+@app.post("/inference/tess")
+async def tess_inference(request: InferenceRequest):
+    result = run_inference(tess_session, request.inputs)
+    if result["status"] == "error":
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+@app.post("/inference/k2")
+async def k2_inference(request: InferenceRequest):
+    result = run_inference(k2_session, request.inputs)
+    if result["status"] == "error":
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+# ✅ NEW: Kepler endpoint
+@app.post("/inference/kepler")
+async def kepler_inference(request: InferenceRequest):
+    result = run_inference(kepler_session, request.inputs)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["error"])
     return result
