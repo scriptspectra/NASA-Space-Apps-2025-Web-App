@@ -1,20 +1,49 @@
-# Dockerfile.frontend
-FROM node:20-alpine
+# Next.js Frontend Dockerfile - Multi-stage build
+# Stage 1: Build stage with all dependencies
+FROM node:20-alpine AS builder
 
+# Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files and install all dependencies (including devDependencies for build)
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# Copy the frontend code
+# Copy the frontend source code
 COPY . .
 
-# Build Next.js app
+# Generate Prisma client (now that schema is available)
+RUN npx prisma generate
+
+# Build Next.js application for production
 RUN npm run build
 
-# Expose port 3000
+# Stage 2: Production stage with minimal dependencies
+FROM node:20-alpine AS runner
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files and install only production dependencies
+COPY package*.json ./
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy Prisma schema and generate client for production
+COPY prisma/ ./prisma/
+RUN npx prisma generate
+
+# Copy built application from builder stage
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+USER nextjs
+
+# Expose port 3000 (this will be the only public entry point)
 EXPOSE 3000
 
-# Start Next.js
+# Start Next.js production server
+# Frontend server will use BACKEND_URL env var to reach backend internally
 CMD ["npm", "start"]

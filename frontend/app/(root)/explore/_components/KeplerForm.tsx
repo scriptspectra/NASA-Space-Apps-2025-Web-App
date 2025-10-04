@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { getApiUrl } from "@/lib/api-config";
 
 export default function KeplerForm() {
   const [formData, setFormData] = useState<{ [key: string]: string }>({
@@ -56,7 +57,7 @@ export default function KeplerForm() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/inference/kepler", {
+      const response = await fetch(getApiUrl("/inference/kepler"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

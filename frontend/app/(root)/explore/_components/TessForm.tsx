@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { getApiUrl } from "@/lib/api-config";
 
 export default function TessForm() {
   const tessAccuracy = 94.22
@@ -40,7 +41,7 @@ export default function TessForm() {
   useEffect(() => {
     const fetchAccuracy = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/accuracy/tess");
+        const response = await fetch(getApiUrl("/accuracy/tess"));
         const data = await response.json();
         if (data.accuracy !== undefined) {
           setAccuracy(data.accuracy);
@@ -70,7 +71,7 @@ export default function TessForm() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/inference/tess", {
+      const response = await fetch(getApiUrl("/inference/tess"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

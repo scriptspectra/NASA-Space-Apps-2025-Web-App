@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { getApiUrl } from "@/lib/api-config";
 
 export default function K2Form() {
   const [formData, setFormData] = useState<{ [key: string]: string }>({
@@ -55,7 +56,7 @@ export default function K2Form() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/inference/k2", {
+      const response = await fetch(getApiUrl("/inference/k2"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
