@@ -21,6 +21,8 @@ export default function KeplerForm() {
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const keplerAccuracy = 96.97
+
   const labels: { [key: string]: string } = {
     koi_period: "Orbital Period [days]",
     koi_time0bk: "Transit Epoch [BKJD]",
@@ -82,7 +84,46 @@ export default function KeplerForm() {
 
   return (
     <div className="p-4 max-w-xl mx-auto w-full">
-      <form onSubmit={handleSubmit} className="space-y-4">
+<div className="flex gap-4 mb-5 w-full items-center p-4 justify-between mx-auto bg-black rounded-2xl shadow-lg">
+  <div className="flex justify-start flex-col">
+    <h2 className="text-3xl text-white font-semibold mb-4 text-center">Kepler</h2>
+  </div>
+  <div className="flex gap-4 items-center">
+  <h2 className="font-light text-xl text-white mb-4 text-center">Model Accuracy</h2>
+  <div className="relative w-32 h-32">
+    {/* Background circle */}
+    <svg className="w-32 h-32">
+      <circle
+        className="text-gray-700"
+        strokeWidth="8"
+        stroke="currentColor"
+        fill="transparent"
+        r="48"
+        cx="64"
+        cy="64"
+      />
+      {/* Progress circle */}
+      <circle
+        className="text-[#1b943b] transform -rotate-90 origin-center transition-all duration-1000"
+        strokeWidth="8"
+        stroke="currentColor"
+        strokeDasharray={2 * Math.PI * 48}
+        strokeDashoffset={2 * Math.PI * 48 * (1 - keplerAccuracy / 100)}
+        fill="transparent"
+        r="48"
+        cx="64"
+        cy="64"
+      />
+    </svg>
+
+    {/* Center text */}
+    <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl">
+      {`${keplerAccuracy.toFixed(2)}%`}
+    </div>
+  </div>
+  </div>
+</div>
+      <form onSubmit={handleSubmit} className="space-y-16">
         <div className="grid md:grid-cols-2 gap-4">
           {Object.keys(formData).map((key) => (
             <label key={key} className="block">
@@ -93,7 +134,7 @@ export default function KeplerForm() {
                 name={key}
                 value={formData[key]}
                 onChange={handleChange}
-                placeholder={labels[key]}
+                placeholder=''
                 className="border p-2 w-full rounded"
                 required
               />

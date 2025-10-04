@@ -1,7 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function TessForm() {
+  const tessAccuracy = 94.22
+
   const [formData, setFormData] = useState<{ [key: string]: string }>({
     pl_orbper: "",
     pl_trandurh: "",
@@ -18,6 +20,7 @@ export default function TessForm() {
 
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [accuracy, setAccuracy] = useState<number | null>(null);
 
   const labels: { [key: string]: string } = {
     pl_orbper: "Planet Orbital Period [days]",
@@ -32,6 +35,23 @@ export default function TessForm() {
     st_rad: "Stellar Radius [R_Sun]",
     st_logg: "Stellar log(g) [cm/s²]",
   };
+
+  // Fetch TESS accuracy on component mount
+  useEffect(() => {
+    const fetchAccuracy = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/accuracy/tess");
+        const data = await response.json();
+        if (data.accuracy !== undefined) {
+          setAccuracy(data.accuracy);
+        }
+      } catch (err) {
+        console.error("Failed to fetch TESS accuracy:", err);
+      }
+    };
+
+    fetchAccuracy();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,29 +97,72 @@ export default function TessForm() {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto w-full">
+  <div className="p-4 max-w-xl mx-auto w-full">
+<div className="flex gap-4 mb-5 w-full items-center p-4 justify-between mx-auto bg-black rounded-2xl shadow-lg">
+  <div className="flex justify-start flex-col">
+    <h2 className="text-3xl text-white font-semibold mb-4 text-center">TESS</h2>
+  </div>
+  <div>
+    <h3 className="text-xl text-white font-light mb-4 text-center">Model Accuracy</h3>
+  <div className="relative w-32 h-32">
+    {/* Background circle */}
+
+    <svg className="w-32 h-32">
+      <circle
+        className="text-gray-700"
+        strokeWidth="8"
+        stroke="currentColor"
+        fill="transparent"
+        r="48"
+        cx="64"
+        cy="64"
+      />
+      {/* Progress circle */}
+      <circle
+        className="text-[#1b943b] transform -rotate-90 origin-center transition-all duration-1000"
+        strokeWidth="8"
+        stroke="currentColor"
+        strokeDasharray={2 * Math.PI * 48}
+        strokeDashoffset={2 * Math.PI * 48 * (1 - tessAccuracy / 100)}
+        fill="transparent"
+        r="48"
+        cx="64"
+        cy="64"
+      />
+    </svg>
+
+    {/* Center text */}
+    <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl">
+      {`${tessAccuracy.toFixed(2)}%`}
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid md:grid-cols-2 gap-4">
-            {Object.keys(formData).map((key) => (
+        <div className="grid md:grid-cols-2 gap-x-8 gap-y-8">
+          {Object.keys(formData).map((key) => (
             <label key={key} className="block">
-                <span className="block font-medium mb-1">{labels[key]}</span>
-                <input
+              <span className="block font-medium mb-1">{labels[key]}</span>
+              <input
                 type="number"
                 step="any"
                 name={key}
                 value={formData[key]}
                 onChange={handleChange}
-                placeholder={labels[key]}
+                placeholder=""
                 className="border p-2 w-full rounded"
                 required
-                />
+              />
             </label>
-            ))}
+          ))}
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="bg-none border-1 border-[#D4481E] text-[#D4481E] px-4 py-2 rounded w-full"
+          className="bg-none border-1 border-[#1b943b] text-[#1b943b] px-4 py-2 rounded w-full"
         >
           {loading ? "Predicting..." : "Predict"}
         </button>

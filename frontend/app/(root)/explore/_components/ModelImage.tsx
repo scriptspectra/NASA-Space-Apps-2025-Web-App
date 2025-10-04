@@ -14,7 +14,7 @@ export default function ModelImage({
   return (
     <div className="relative w-full group cursor-pointer">
       {/* Image + Glow Wrapper */}
-      <div className="relative rounded-2xl w-full h-64 overflow-hidden">
+      <div className="relative rounded-2xl w-full h-64 md:h-140 overflow-hidden">
         {/* Image */}
         <img
           src={imageUrl}

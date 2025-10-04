@@ -24,7 +24,9 @@ const page = () => {
             </TabsList>
             <TabsContent value="tess">
                 <div className='grid md:grid-cols-2'>
-                    <TessForm />
+                    <div className='w-full'>
+                        <TessForm />
+                    </div>                    
                     <div className='flex justify-center'>
                         <ModelImage 
                             imageUrl = "/tess.jpg" 
@@ -58,6 +60,9 @@ const page = () => {
                             title = "Kepler"
                             subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
                         />
+                        <div>
+
+                        </div>
                     </div>
                 </div>
             </TabsContent>
