@@ -10,6 +10,24 @@ services:
     networks:
       - app
 
+  lightcurve:
+    build:
+      context: ./lightcurve
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./lightcurve/models:/app/models:ro
+      - ./lightcurve/data:/app/data:ro
+      - ./lightcurve/pixelfiles:/app/pixelfiles:ro
+    networks:
+      - app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   frontend:
     build:
       context: ./frontend
@@ -19,6 +37,7 @@ services:
     environment:
       NODE_ENV: "production"
       BACKEND_URL: "http://backend:8000"
+      LIGHTCURVE_API_URL: "http://lightcurve:9000"
       NEXT_PUBLIC_API_URL: "http://localhost:8000"
       PORT: "3000"
     healthcheck:
@@ -28,6 +47,7 @@ services:
       retries: 3
     depends_on:
       - backend
+      - lightcurve
     networks:
       - app
 

@@ -23,7 +23,10 @@ const nextConfig = {
     ]
   },
   experimental: {
-    optimizeCss: true
+    optimizeCss: true,
+    serverActions: {
+      bodySizeLimit: '100mb',
+    },
   },
   poweredByHeader: false
 };
