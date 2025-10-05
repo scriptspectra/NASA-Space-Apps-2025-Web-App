@@ -13,16 +13,20 @@ from fastapi.middleware.cors import CORSMiddleware
 # CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://frontend:3000",
+        "http://127.0.0.1:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Load all three models
-tess_model_path = "models/TESS_Model.onnx"
+tess_model_path = "models/TESS_Model_v2.onnx"
 k2_model_path = "models/k2_model.onnx"
-kepler_model_path = "models/koi_model.onnx"
+kepler_model_path = "models/KOI_Model_v2.onnx"
 
 try:
     tess_session = ort.InferenceSession(tess_model_path)

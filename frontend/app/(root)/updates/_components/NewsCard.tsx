@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { Orbit } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -31,11 +32,8 @@ const NewsCard = ({
     <div className="p-4 flex flex-col dark:bg-[#383838] bg-[#c5c4c4] border-none rounded-md">
       <div className="pb-4 flex">
         <div className="rounded-lg overflow-hidden mr-1">
-          <Image
-            src="/exo.png"
-            alt="exoplanet"
-            width={100}
-            height={100}
+          <Orbit 
+            className='w-20 h-20'
           />
         </div>
         <div className="px-5 flex flex-col justify-center">

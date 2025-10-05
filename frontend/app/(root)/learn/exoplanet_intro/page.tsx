@@ -59,10 +59,10 @@ const page = () => {
       <h1 className='md:text-4xl md:font-bold text-3xl font-bold mb-4'>
         Introduction to Exoplanets  
       </h1>
-      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff]'>
+      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#2563EB] py-4 px-8 rounded-md bg-[#fff]'>
         <div className='flex items-center '>
-          <Globe className='text-[#D4481E] mr-2'/>
-          <h1 className='text-2xl text-[#D4481E]'>What are Exoplanets?</h1>
+          <Globe className='text-[#2563EB] mr-2'/>
+          <h1 className='text-2xl text-[#2563EB]'>What are Exoplanets?</h1>
         </div>
         <p className='p-4'>
           Exoplanets — short for extrasolar planets — are planets that orbit stars beyond our own Solar System. Just as Earth orbits the Sun, these distant worlds revolve around other stars, sometimes located hundreds, thousands, or even tens of thousands of light-years away. Their discovery has opened an entirely new frontier in astronomy, fundamentally changing our understanding of the universe.
@@ -73,7 +73,7 @@ const page = () => {
         <p className='p-4'>
           The first confirmed discoveries of exoplanets were made in the early 1990s. Since then, thanks to powerful telescopes, space missions, and ingenious detection methods, astronomers have catalogued thousands of these distant worlds. Today, exoplanet science is one of the fastest-growing fields in astronomy, and we are only beginning to grasp the immense diversity and complexity of planetary systems beyond our own.
         </p>
-        <div className='px-4 rounded-md py-2 bg-[#df4a1dc1] border-2 border-l-[#D4481E]'>
+        <div className='px-4 rounded-md py-2 bg-[#df4a1dc1] border-2 border-l-[#2563EB]'>
           <p>
             Over 5,000 exoplanets have been confirmed to date, with thousands more candidates awaiting verification.
           </p>
@@ -88,7 +88,7 @@ const page = () => {
             A Brief History of Exoplanet Discovery
           </h1>
         </div>
-      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff]'>
+      <div className='dark:bg-[#2A2A2A] border-1 border-l-[#2563EB] py-4 px-8 rounded-md bg-[#fff]'>
         <p className='p-4'>
           The idea of other worlds is not new. For centuries, humans have gazed at the stars and wondered whether planets like Earth might exist around them. The Italian philosopher Giordano Bruno speculated as early as the 16th century that the universe contained "countless suns and planets." Yet, for most of history, such ideas remained purely philosophical — beyond the reach of scientific proof.
         </p>
@@ -133,7 +133,7 @@ const page = () => {
             Why Study Exoplanets? 
           </h1>
         </div>
-        <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff] my-4'>
+        <div className='dark:bg-[#2A2A2A] border-1 border-l-[#2563EB] py-4 px-8 rounded-md bg-[#fff] my-4'>
           <p className='p-4'>
             The search for exoplanets goes far beyond simply cataloguing distant worlds. It addresses some of the most fundamental and profound questions humanity has ever asked:
           </p>
@@ -153,10 +153,10 @@ const page = () => {
         </div>        
       </div>
       <div>
-        <div className='dark:bg-[#2A2A2A] border-1 border-l-[#D4481E] py-4 px-8 rounded-md bg-[#fff] my-4'>
+        <div className='dark:bg-[#2A2A2A] border-1 border-l-[#2563EB] py-4 px-8 rounded-md bg-[#fff] my-4'>
         <div className='flex items-center '>
-          <Brain className='text-[#D4481E] mr-2'/>
-          <h1 className='text-2xl text-[#D4481E]'>Did You Know?</h1>
+          <Brain className='text-[#2563EB] mr-2'/>
+          <h1 className='text-2xl text-[#2563EB]'>Did You Know?</h1>
         </div>
         <p className='p-4'>
           Astronomers estimate that our galaxy alone may contain hundreds of billions of planets. That means almost every star you see in the night sky likely hosts its own planetary system — and many of those planets could be worlds unlike anything we’ve ever imagined.        </p>

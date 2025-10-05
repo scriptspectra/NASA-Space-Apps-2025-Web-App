@@ -1,39 +1,51 @@
+'use client'
+// ...existing code...
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SubTopicCardProps {
-  image: string;
+  image?: string;
   subtopic: string;
-  link: string;
+  link?: string;
 }
 
-const SubTopicCard = ({ image, subtopic, link }: SubTopicCardProps) => {
-  return (
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative block overflow-hidden rounded-md shadow-lg group"
-    >
-      {/* Background Image */}
-        <div className="relative w-full h-48">
-        <Image
-            src="/exo.png"   // must be exactly like this
-            alt={subtopic}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        </div>
+const SubTopicCard = ({ image = '/exo.png', subtopic, link = '/' }: SubTopicCardProps) => {
+  const external = typeof link === 'string' && (link.startsWith('http://') || link.startsWith('https://'));
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-500"></div>
-
-      {/* Text */}
-      <div className="absolute bottom-4 left-4 text-white">
-        <h3 className="text-lg font-semibold drop-shadow-md">{subtopic}</h3>
+  const cardContent = (
+    <>
+      <div className="h-[120px] p-6 bg-white dark:bg-gray-900 flex flex-col justify-between">
+        <h3 className="text-lg font-semibold text-[#2563EB] dark:text-white group-hover:text-[#3b82f6] transition-colors duration-300 line-clamp-2">
+          {subtopic}
+        </h3>
+        <div className="mt-auto w-8 h-0.5 bg-[#2563EB] group-hover:w-full transition-all duration-300 ease-in-out"></div>
       </div>
-    </a>
+    </>
+  );
+
+  if (external) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block overflow-hidden rounded-lg shadow-md group hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 hover:transform hover:-translate-y-1 border-l-4 border-[#2563EB]"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  return (
+    <Link 
+      href={link ?? '/'} 
+      className="relative block overflow-hidden rounded-lg shadow-lg group hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 hover:transform hover:-translate-y-1"
+    >
+      {cardContent}
+    </Link>
   );
 };
 
 export default SubTopicCard;
+// ...existing code...

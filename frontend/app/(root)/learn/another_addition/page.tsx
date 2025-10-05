@@ -17,8 +17,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Key Habitability Factors */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Key Habitability Factors</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Key Habitability Factors</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Habitable Zone (HZ):</strong> The orbital region where liquid water can exist. Too close → water evaporates; too far → water freezes.</li>
           <li><strong>Planet Size & Composition:</strong> Rocky planets are more likely to support life than gas giants.</li>
@@ -29,8 +29,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Atmospheric Analysis */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Atmospheric Analysis — Detecting Biosignatures</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Atmospheric Analysis — Detecting Biosignatures</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Using spectroscopy, astronomers analyze starlight that passes through or reflects off a planet’s atmosphere. They look for chemical fingerprints that indicate habitability or life:
         </p>

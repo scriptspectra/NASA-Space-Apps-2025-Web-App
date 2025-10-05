@@ -17,8 +17,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* What Are Biosignatures */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What Are Biosignatures?</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What Are Biosignatures?</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A biosignature is any substance, pattern, or signal in a planet’s atmosphere, surface, or light that could indicate life. Common examples include:
         </p>
@@ -33,8 +33,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* How Biosignatures Are Detected */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How Biosignatures Are Detected</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How Biosignatures Are Detected</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Transmission Spectroscopy:</strong> Observes starlight passing through a planet’s atmosphere during a transit. Absorption lines reveal molecules like water vapor, oxygen, or methane.</li>
           <li><strong>Emission and Reflection Spectroscopy:</strong> Measures light emitted or reflected by a planet, revealing temperature, cloud coverage, and chemical imbalances caused by life.</li>
@@ -43,8 +43,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* Key Biosignature Combinations */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Key Biosignature Combinations</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Key Biosignature Combinations</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           No single molecule proves life exists. Scientists look for pairs or combinations of gases that suggest biological activity:
         </p>
@@ -56,8 +56,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges in Detecting Biosignatures</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges in Detecting Biosignatures</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400">
           <li><strong>False positives:</strong> Geological or photochemical processes can produce some biosignature gases.</li>
           <li><strong>Distance and faint signals:</strong> Exoplanet light is extremely weak compared to its star.</li>
@@ -67,8 +67,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* Advanced Insight */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Advanced Insight</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Advanced Insight</h2>
         <p className="text-slate-700 dark:text-slate-300">
           Scientists quantify potential biosignatures using the biosignature detectability index (BDI): <br />
           <strong>BDI = S<sub>bio</sub> / (S<sub>noise</sub> + S<sub>stellar</sub>)</strong>
@@ -79,8 +79,8 @@ const BiosignaturesPage = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Why Biosignatures Matter</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Why Biosignatures Matter</h2>
         <p className="text-slate-700 dark:text-slate-300">
           Detecting biosignatures is the first step in answering humanity’s oldest question: Are we alone? Even indirect evidence could revolutionize our understanding of biology, chemistry, and planetary evolution. Some scientists predict that the first confirmed evidence of extraterrestrial life may come from biosignature gases, not alien messages or probes.
         </p>
