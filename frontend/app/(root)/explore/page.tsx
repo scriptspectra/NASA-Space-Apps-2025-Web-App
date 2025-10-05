@@ -62,7 +62,6 @@ const page = () => {
             <Tabs defaultValue="tess" className="w-full">
             <TabsList>
                 <TabsTrigger value="tess">TESS</TabsTrigger>
-                <TabsTrigger value="k2">K2</TabsTrigger>
                 <TabsTrigger value="kepler">Kepler</TabsTrigger>
             </TabsList>
             <TabsContent value="tess">
@@ -75,19 +74,6 @@ const page = () => {
                             imageUrl = "/tess.jpg" 
                             alt = "tess"
                             title = "Tess"
-                            subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
-                        />
-                    </div>
-                </div>
-            </TabsContent>
-            <TabsContent value="k2">
-                <div className='grid md:grid-cols-2'>
-                    <K2Form />
-                    <div className='flex justify-center'>
-                        <ModelImage 
-                            imageUrl = "/k2.jpg" 
-                            alt = "k2"
-                            title = "K2"
                             subtitle = "Launched in 2018, TESS surveys nearly the entire sky to find exoplanets around bright, nearby stars. By focusing on closer stars, it makes follow-up observations, including studying planetary atmospheres, much easier and more detailed than ever before."
                         />
                     </div>

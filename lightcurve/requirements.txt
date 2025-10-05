@@ -1,0 +1,24 @@
+# Core scientific computing packages
+numpy>=2.3.0
+scipy>=1.16.0
+matplotlib>=3.10.0
+pandas>=2.3.0
+
+# Astronomy and lightcurve analysis
+lightkurve>=2.5.1
+astropy>=7.1.0
+astroquery>=0.4.11
+
+# Machine learning and inference
+onnxruntime>=1.15.1
+scikit-learn>=1.7.0
+
+# FastAPI and server (if needed for web interface)
+fastapi>=0.104.1
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+
+# Additional utilities
+pydantic>=2.11.0
+tqdm>=4.67.0
+uncertainties>=3.2.0

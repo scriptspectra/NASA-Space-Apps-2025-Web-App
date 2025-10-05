@@ -85,25 +85,53 @@ const Page = () => {
       {/* Methods */}
       <div className="space-y-8">
         {detectionMethods.map((method) => (
-          <div key={method.id} className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">{method.title}</h2>
-            <p className="text-slate-700 dark:text-slate-300 mb-2">{method.description}</p>
-            <ul className="text-sm text-slate-500 list-disc list-inside mb-2">
-              <li><strong>Best for:</strong> {method.bestFor}</li>
-              <li><strong>What we learn:</strong> {method.whatWeLearn}</li>
-              <li><strong>Pros:</strong> {method.pros}</li>
-              <li><strong>Cons:</strong> {method.cons}</li>
-            </ul>
-            {method.funfact && <p className="italic text-slate-400">Fun fact: {method.funfact}</p>}
+          <div key={method.id} className="dark:bg-[#2A2A2A] bg-white rounded-lg overflow-hidden shadow-lg">
+            <div className="md:flex">
+              {/* Image section */}
+              <div className="md:w-1/3 relative h-64 md:h-[400px]">
+                <img
+                  src={
+                    method.id === 1 ? "/Transit Method.PNG" :
+                    method.id === 2 ? "/Radial Velocity method.PNG" :
+                    method.id === 3 ? "/Direct Imaging.jpg" :
+                    method.id === 4 ? "/Gravitational Microlensing.PNG" :
+                    "/Astrometry of Sun.PNG"
+                  }
+                  alt={method.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Content section */}
+              <div className="md:w-2/3 p-6 border-l-4 border-[#5693f5]">
+                <h2 className="text-2xl font-semibold text-[#5693f5] mb-2">{method.title}</h2>
+                <p className="text-slate-700 dark:text-slate-300 mb-4">{method.description}</p>
+                <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+                  <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-2">
+                    <li><strong className="text-[#5693f5]">Best for:</strong> {method.bestFor}</li>
+                    <li><strong className="text-[#5693f5]">What we learn:</strong> {method.whatWeLearn}</li>
+                    <li><strong className="text-[#5693f5]">Pros:</strong> {method.pros}</li>
+                    <li><strong className="text-[#5693f5]">Cons:</strong> {method.cons}</li>
+                  </ul>
+                </div>
+                {method.funfact && (
+                  <div className="mt-4 bg-[#0a1c42] bg-opacity-10 rounded-lg p-3">
+                    <p className="text-[#ecf0f8] dark:text-[#e6ebf1] italic text-sm">
+                      ✨ Fun fact: {method.funfact}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 my-8">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#5693f5] p-6 my-8">
         <div className="flex items-center mb-4">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#5693f5] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#5693f5]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Each method is like a different detective tool, revealing unique clues about a planet’s size, mass, orbit, distance, and even atmosphere. By combining them, astronomers can build a complete profile of these distant worlds — turning faint hints of light into rich, detailed stories about alien solar systems.

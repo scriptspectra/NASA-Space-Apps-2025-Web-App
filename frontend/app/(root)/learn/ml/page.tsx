@@ -18,8 +18,8 @@ const MLExoplanetsPage = () => {
       </div>
 
       {/* Why Use ML */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Why Use Machine Learning?</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Why Use Machine Learning?</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Traditional planet-hunting relies on humans or classical algorithms to search for repeating dips in starlight. These methods:
         </p>
@@ -34,20 +34,20 @@ const MLExoplanetsPage = () => {
       </div>
 
       {/* How ML Works */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How Machine Learning Works in Exoplanet Science</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How Machine Learning Works in Exoplanet Science</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Machine learning teaches computers to recognize patterns and make predictions. In exoplanet detection, the process typically follows these steps:
         </p>
 
         {/* Step 1 */}
-        <h3 className="text-xl font-semibold text-[#D4481E] mb-1">1. Data Collection & Preprocessing</h3>
+        <h3 className="text-xl font-semibold text-[#2563EB] mb-1">1. Data Collection & Preprocessing</h3>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Raw light curves often contain noise from stellar activity, instrument errors, or background interference. Astronomers clean and normalize the data, remove trends, and label known examples (planet vs. non-planet). Think of this as tidying the textbook before a student starts learning.
         </p>
 
         {/* Step 2 */}
-        <h3 className="text-xl font-semibold text-[#D4481E] mb-1">2. Training the Model</h3>
+        <h3 className="text-xl font-semibold text-[#2563EB] mb-1">2. Training the Model</h3>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The cleaned data trains an ML model to distinguish planetary signals from false positives. Common models include:
         </p>
@@ -61,7 +61,7 @@ const MLExoplanetsPage = () => {
         </p>
 
         {/* Step 3 */}
-        <h3 className="text-xl font-semibold text-[#D4481E] mb-1">3. Prediction and Classification</h3>
+        <h3 className="text-xl font-semibold text-[#2563EB] mb-1">3. Prediction and Classification</h3>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Likely exoplanet</li>
           <li>False positive (binary star, stellar noise, etc.)</li>
@@ -71,7 +71,7 @@ const MLExoplanetsPage = () => {
         </p>
 
         {/* Step 4 */}
-        <h3 className="text-xl font-semibold text-[#D4481E] mb-1">4. Model Evaluation and Validation</h3>
+        <h3 className="text-xl font-semibold text-[#2563EB] mb-1">4. Model Evaluation and Validation</h3>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Precision and recall: measure accuracy</li>
           <li>Confusion matrices: track false positives vs. false negatives</li>
@@ -83,8 +83,8 @@ const MLExoplanetsPage = () => {
       </div>
 
       {/* Beyond Detection */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Beyond Detection: What ML Can Do Next</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Beyond Detection: What ML Can Do Next</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Characterize exoplanets: predict size, temperature, atmosphere.</li>
           <li>Analyze multi-planet systems: detect complex orbital dynamics.</li>
@@ -96,8 +96,8 @@ const MLExoplanetsPage = () => {
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges and Limitations</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges and Limitations</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Data bias: Models are only as good as their training data.</li>
           <li>False positives: ML might misclassify noise as a planet.</li>
@@ -109,10 +109,10 @@ const MLExoplanetsPage = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Machine learning is transforming exoplanet science. What once required teams of astronomers months of careful analysis can now be done in minutes — often with greater sensitivity. As telescopes grow more powerful and data more abundant, AI becomes an essential partner in humanity’s search for new worlds.

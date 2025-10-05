@@ -6,14 +6,20 @@ import { Globe, Orbit, Info } from 'lucide-react'
 const DirectImagingPage = () => {
   return (
     <div className="p-6 md:pl-24 space-y-8">
-
       {/* Header */}
       <div>
         <h1 className="md:text-4xl text-3xl font-bold mb-4">
           Direct Imaging Method — Seeing Exoplanets with Our Own Eyes
         </h1>
+        <div className="mb-6 rounded-lg overflow-hidden shadow-lg">
+          <img 
+            src="/Direct Imaging.jpg" 
+            alt="Direct Imaging Method"
+            className="w-full h-[400px] object-cover"
+          />
+        </div>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
-          Most exoplanets are incredibly faint compared to their host stars. Imagine trying to spot a firefly buzzing around a lighthouse — from thousands of kilometers away. That’s the challenge astronomers face when they try to see planets outside our solar system. But with cutting-edge technology, they’ve managed to do something once thought impossible: directly capture images of exoplanets. This approach, known as the Direct Imaging Method, doesn’t just detect planets indirectly through wobbles or shadows — it allows us to actually see them as separate points of light.
+          Most exoplanets are incredibly faint compared to their host stars. Imagine trying to spot a firefly buzzing around a lighthouse — from thousands of kilometers away. That's the challenge astronomers face when they try to see planets outside our solar system. But with cutting-edge technology, they've managed to do something once thought impossible: directly capture images of exoplanets. This approach, known as the Direct Imaging Method, doesn't just detect planets indirectly through wobbles or shadows — it allows us to actually see them as separate points of light.
         </p>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           <strong>Example:</strong> The HR 8799 star system, located about 130 light-years from Earth, features its central star and three directly imaged exoplanets (b, c, d) captured with infrared photography from the Palomar Observatory's Hale Telescope.
@@ -21,17 +27,17 @@ const DirectImagingPage = () => {
       </div>
 
       {/* How It Works */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How It Works</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How It Works</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Direct imaging relies on advanced techniques to cancel out the overwhelming brightness of stars:
         </p>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Coronagraphy:</strong> A device inside the telescope blocks most of the starlight, like using your hand to block the Sun to see something faint nearby.</li>
-          <li><strong>Adaptive Optics:</strong> Earth’s atmosphere blurs starlight. Adaptive optics corrects this distortion in real-time, making ground-based images sharper.</li>
+          <li><strong>Adaptive Optics:</strong> Earth's atmosphere blurs starlight. Adaptive optics corrects this distortion in real-time, making ground-based images sharper.</li>
         </ul>
         <p className="text-slate-700 dark:text-slate-300">
-          Once the star’s glare is suppressed, the faint glow of the planet — usually brightest in infrared — can be captured.
+          Once the star's glare is suppressed, the faint glow of the planet — usually brightest in infrared — can be captured.
         </p>
         <p className="italic text-slate-400 mb-2">
           Fun Fact: The first directly imaged exoplanets were spotted in 2008 around HR 8799, revealing three giant planets orbiting the same star.
@@ -39,10 +45,22 @@ const DirectImagingPage = () => {
       </div>
 
       {/* Adaptive Optics */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Adaptive Optics — Correcting Earth’s Distorting Lens</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Adaptive Optics — Correcting Earth's Distorting Lens</h2>
+        <div className="my-4 grid grid-cols-2 gap-4">
+          <img 
+            src="/Adaptive optics.jpg" 
+            alt="Adaptive Optics System"
+            className="rounded-lg w-full h-48 object-cover"
+          />
+          <img 
+            src="/Adaptive optics 2.jpg" 
+            alt="Adaptive Optics Result"
+            className="rounded-lg w-full h-48 object-cover"
+          />
+        </div>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
-          Earth’s atmosphere bends and distorts incoming starlight, making stars twinkle and planets blur. Adaptive optics (AO) solves this:
+          Earth's atmosphere bends and distorts incoming starlight, making stars twinkle and planets blur. Adaptive optics (AO) solves this:
         </p>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>A laser creates an artificial star in the sky.</li>
@@ -58,8 +76,8 @@ const DirectImagingPage = () => {
       </div>
 
       {/* What We Can Learn */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What We Can Learn</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What We Can Learn</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Brightness & Color:</strong> Reveal temperature, chemistry, and atmosphere.</li>
           <li><strong>Orbits:</strong> Tracking position over years maps orbital paths.</li>
@@ -71,8 +89,8 @@ const DirectImagingPage = () => {
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges and Limitations</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges and Limitations</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Extreme Contrast: A star is often a billion times brighter than its planet.</li>
           <li>Distance Limits: Works best for planets orbiting far from their stars.</li>
@@ -82,8 +100,8 @@ const DirectImagingPage = () => {
       </div>
 
       {/* Advanced Insight */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Advanced Insight</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Advanced Insight</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The flux (brightness) from a directly imaged planet can be approximated by:
         </p>
@@ -96,30 +114,29 @@ const DirectImagingPage = () => {
       </div>
 
       {/* Why It Matters */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Why It Matters</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Why It Matters</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Unlike most methods that give indirect evidence, direct imaging provides actual visual confirmation. It allows us to study alien skies, clouds, and even weather systems light-years away.
         </p>
         <p className="italic text-slate-400">
-          Exciting future missions like LUVOIR and HabEx aim to directly image Earth-like worlds in habitable zones. NASA’s JWST is already pushing these limits, with potential to study atmospheres of rocky planets near their stars.
+          Exciting future missions like LUVOIR and HabEx aim to directly image Earth-like worlds in habitable zones. NASA's JWST is already pushing these limits, with potential to study atmospheres of rocky planets near their stars.
         </p>
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300">
           The Direct Imaging Method turns science fiction into science fact. By using clever instruments to block starlight, astronomers can capture the glow of distant planets. While limited to certain kinds of worlds today, the technique holds the promise of revealing planets with oceans, clouds, and maybe even signs of life.
         </p>
         <p className="italic text-slate-400">
-          Quick Thought: The first image of another Earth-like planet may change how humanity sees its place in the universe — because for the first time, we’ll have seen a world that could look a lot like home.
+          Quick Thought: The first image of another Earth-like planet may change how humanity sees its place in the universe — because for the first time, we'll have seen a world that could look a lot like home.
         </p>
       </div>
-
     </div>
   )
 }

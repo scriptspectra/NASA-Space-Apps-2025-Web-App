@@ -15,7 +15,7 @@ interface PlanetTypeProps {
 
 const PlanetTypeSection = ({ icon: Icon, title, what, traits, why, funfact, image }: PlanetTypeProps) => {
   return (
-    <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] rounded-md my-6 overflow-hidden grid md:grid-cols-4 gap-6'>
+    <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#2563EB] rounded-md my-6 overflow-hidden grid md:grid-cols-4 gap-6'>
       {/* Image Column */}
       {image && (
         <div className="md:col-span-1 flex items-center justify-center">
@@ -31,8 +31,8 @@ const PlanetTypeSection = ({ icon: Icon, title, what, traits, why, funfact, imag
       <div className='md:col-span-3 py-4 px-6'>
         {/* Icon + Title */}
         <div className='flex items-center mb-2'>
-          <Icon className='text-[#D4481E] mr-2' />
-          <h2 className='text-2xl text-[#D4481E] font-semibold'>{title}</h2>
+          <Icon className='text-[#2563EB] mr-2' />
+          <h2 className='text-2xl text-[#2563EB] font-semibold'>{title}</h2>
         </div>
 
         <p className='p-2'>{what}</p>
@@ -157,7 +157,7 @@ const Page = () => {
       </div>
 
       {/* Intro Section */}
-      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] py-4 px-8 rounded-md'>
+      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#2563EB] py-4 px-8 rounded-md'>
         <p className='p-4'>
           The universe is home to a breathtaking variety of planets — far beyond the eight familiar worlds in our own Solar System. Astronomers have uncovered planets so massive they could swallow Jupiter, others smaller than Mars, some so hot that metals would vaporize on their surfaces, and a few that may even rain diamonds.
         </p>
@@ -172,10 +172,10 @@ const Page = () => {
       ))}
 
       {/* Summary */}
-      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#D4481E] py-4 px-8 rounded-md my-8'>
+      <div className='dark:bg-[#2A2A2A] bg-[#fff] border-1 border-l-[#2563EB] py-4 px-8 rounded-md my-8'>
         <div className='flex items-center mb-2'>
-          <Info className='text-[#D4481E] mr-2' />
-          <h2 className='text-2xl text-[#D4481E] font-semibold'>Summary</h2>
+          <Info className='text-[#2563EB] mr-2' />
+          <h2 className='text-2xl text-[#2563EB] font-semibold'>Summary</h2>
         </div>
         <p className='p-4'>
           Exoplanets come in more shapes, sizes, and environments than anyone imagined just a few decades ago. This extraordinary diversity shows that our Solar System is just one example in a cosmic gallery of possibilities. From lava worlds that rain magma to lonely wanderers drifting between stars, every new discovery teaches us something about how planets form, evolve, and possibly host life.

@@ -17,8 +17,8 @@ const Page = () => {
       </div>
 
       {/* How It Works */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How It Works</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How It Works</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A planet’s gravitational pull causes its star to oscillate slightly. As the star moves:
         </p>
@@ -35,8 +35,8 @@ const Page = () => {
       </div>
 
       {/* What We Can Learn */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What We Can Learn from Radial Velocity</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What We Can Learn from Radial Velocity</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Minimum Mass:</strong> The amplitude of the star’s wobble relates to the planet’s mass. Larger wobbles = more massive planets.</li>
           <li><strong>Orbital Period:</strong> The time between wobbles indicates how long the planet takes to complete one orbit.</li>
@@ -49,8 +49,8 @@ const Page = () => {
       </div>
 
       {/* Challenges and Limitations */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges and Limitations</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges and Limitations</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Inclination Ambiguity:</strong> RV only measures motion along the line of sight, so the true planet mass may be higher than measured.</li>
           <li><strong>Stellar Activity:</strong> Starspots, flares, and pulsations can mimic or obscure planetary signals.</li>
@@ -62,8 +62,8 @@ const Page = () => {
       </div>
 
       {/* Theoretical Insight */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Theoretical Insight</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Theoretical Insight</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The radial velocity of a star influenced by a planet can be modeled as:
         </p>
@@ -86,10 +86,10 @@ const Page = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300">
           The radial velocity method transforms subtle stellar wobbles into powerful clues about the existence of planets. It excels at detecting massive planets near their stars and complements the transit method: transit gives size, RV gives mass, allowing density and composition calculations.

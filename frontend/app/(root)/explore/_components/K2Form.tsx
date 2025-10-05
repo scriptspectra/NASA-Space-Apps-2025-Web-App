@@ -146,7 +146,7 @@ export default function K2Form() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-none border-1 border-[#D4481E] text-[#D4481E] px-4 py-2 rounded w-full"
+          className="bg-none border-1 border-[#2563EB] text-[#2563EB] px-4 py-2 rounded w-full"
         >
           {loading ? "Predicting..." : "Predict"}
         </button>

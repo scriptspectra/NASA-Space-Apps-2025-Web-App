@@ -20,8 +20,8 @@ const Page = () => {
       </div>
 
       {/* How It Works */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How It Works</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How It Works</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A transit occurs when a planet’s orbit is perfectly aligned with our line of sight from Earth, so that the planet crosses directly in front of its star. When this happens:
         </p>
@@ -37,8 +37,8 @@ const Page = () => {
       </div>
 
       {/* What We Learn */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What We Can Learn from a Transit</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What We Can Learn from a Transit</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Planet size:</strong> The depth of the dip is proportional to the planet’s size. A larger dip means a larger planet.</li>
           <li><strong>Orbital period:</strong> The time between repeated dips tells us how long the planet takes to complete one orbit.</li>
@@ -51,8 +51,8 @@ const Page = () => {
       </div>
 
       {/* Light Curve */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">A Typical Transit Light Curve</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">A Typical Transit Light Curve</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A transit event produces a distinctive light curve that unfolds in four main stages:
         </p>
@@ -68,16 +68,16 @@ const Page = () => {
       </div>
 
       {/* Real-Life Discoveries */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Real-Life Discoveries</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Real-Life Discoveries</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The Kepler Space Telescope (2009–2018) continuously monitored over 150,000 stars and discovered more than 2,700 confirmed exoplanets. Its successor, TESS, launched in 2018, is now scanning nearly the entire sky. Today, about 75% of all known exoplanets have been discovered using the transit method — making it the undisputed champion of planet-hunting.
         </p>
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges and Limitations</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges and Limitations</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Geometric alignment:</strong> Only a small fraction of planetary systems are aligned for a transit.</li>
           <li><strong>False positives:</strong> Starspots, eclipsing binaries, or instrumental noise can mimic a transit.</li>
@@ -86,10 +86,10 @@ const Page = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300">
           The transit method turns tiny, almost imperceptible dips in starlight into rich scientific insights. It has allowed astronomers to measure planets’ sizes, map their orbits, probe their atmospheres, and even search for signs of habitability — all from light-years away.

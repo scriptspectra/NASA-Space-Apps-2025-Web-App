@@ -18,8 +18,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* What is a Light Curve */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What Is a Light Curve?</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What Is a Light Curve?</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A light curve is a graph showing how a star’s brightness changes over time. For most stars, brightness is steady. But when a planet passes in front of its star, the light dips slightly, creating a distinct U-shaped or box-shaped signature.
         </p>
@@ -35,8 +35,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* Anatomy of a Transit Light Curve */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Anatomy of a Transit Light Curve</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Anatomy of a Transit Light Curve</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Out-of-Transit:</strong> brightness steady.</li>
           <li><strong>Ingress:</strong> planet starts crossing the star, brightness begins to dip.</li>
@@ -50,8 +50,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* What Light Curves Can Reveal */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What Light Curves Can Reveal</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What Light Curves Can Reveal</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Planet radius — bigger dips = bigger planets.</li>
           <li>Orbital distance — longer intervals between dips = wider orbits.</li>
@@ -65,8 +65,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* Advanced Insights */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Advanced Insights: Beyond Simple Transits</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Advanced Insights: Beyond Simple Transits</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Starspot Mapping:</strong> Planet passing in front of dark starspots creates tiny bumps, revealing stellar activity.</li>
           <li><strong>Eclipse Mapping:</strong> Brightness changes during secondary eclipses map temperature patterns on hot Jupiters.</li>
@@ -78,8 +78,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges in Light Curve Analysis</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges in Light Curve Analysis</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Stellar activity — starspots, flares, pulsations.</li>
           <li>Instrumental errors — small quirks in telescopes.</li>
@@ -91,8 +91,8 @@ const LightCurvesPage = () => {
       </div>
 
       {/* From Light Curve to Discovery */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">From Light Curve to Discovery</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">From Light Curve to Discovery</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Traditional algorithms confirm periodic dips.</li>
           <li>Machine learning models classify signals as genuine planets or impostors.</li>
@@ -104,10 +104,10 @@ const LightCurvesPage = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">Summary</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">Summary</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300">
           Light curves are the unsung heroes of modern astronomy, turning subtle dips in brightness into revelations about planets hundreds of light-years away. They bridge raw telescope data and the discovery of new Earths, systems, and insights into planetary formation and evolution.
