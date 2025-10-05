@@ -344,7 +344,7 @@ export default function LightCurveAnalyzerPage() {
       {/* ML Results */}
       {mlResults && transitParameters && (
         <LightCurveMLResults 
-          prediction={mlResults.prediction}
+          prediction={mlResults}
           inputParameters={transitParameters}
         />
       )}

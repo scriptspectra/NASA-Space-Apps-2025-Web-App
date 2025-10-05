@@ -270,7 +270,7 @@ export default function TessForm() {
                   <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-[#2A2A2A] rounded-lg">
                     <span className="font-medium">Prediction:</span>
                     <span className={`font-bold ${label === 1 ? 'text-[#1b943b]' : 'text-red-500'}`}>
-                      {label === 1 ? 'Confirmed Exoplanet' : 'False Positive'}
+                      {label === 1 ? 'Exoplanet Candidate' : 'False Positive'}
                     </span>
                   </div>
                   
@@ -279,7 +279,7 @@ export default function TessForm() {
                     <div className="space-y-2">
                       <div className="flex flex-col gap-1">
                         <div className="flex justify-between text-sm">
-                          <span>Confirmed Exoplanet</span>
+                          <span>Exoplanet Candidate</span>
                           <span className="font-mono">{(probabilities["1"] * 100).toFixed(2)}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">

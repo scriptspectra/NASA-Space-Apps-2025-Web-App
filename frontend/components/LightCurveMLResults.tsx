@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 
 interface LightCurveMLResultsProps {
-  prediction: number[][];
+  prediction: any; // The full inference_results object
   inputParameters: {
     t0: number;
     depth: number;
@@ -19,30 +19,41 @@ export function LightCurveMLResults({ prediction, inputParameters }: LightCurveM
   let notExoplanetProbability = 0.5;
   
   try {
-    if (Array.isArray(prediction) && prediction.length > 0) {
-      // Format: [[prob_class_0, prob_class_1]]
+    console.log('🔍 Raw prediction data:', prediction);
+    
+    // Check for the expected format: { output_probability: [{"0": prob0, "1": prob1}] }
+    if (prediction && prediction.output_probability && Array.isArray(prediction.output_probability)) {
+      const probData = prediction.output_probability[0];
+      if (probData && typeof probData === 'object') {
+        notExoplanetProbability = parseFloat(probData['0'] || '0.5');
+        exoplanetProbability = parseFloat(probData['1'] || '0.5');
+        console.log('✅ Parsed probabilities:', { notExoplanet: notExoplanetProbability, exoplanet: exoplanetProbability });
+      }
+    }
+    // Fallback: check if it's a direct array format
+    else if (Array.isArray(prediction) && prediction.length > 0) {
       const probabilities = prediction[0];
       if (Array.isArray(probabilities) && probabilities.length >= 2) {
         notExoplanetProbability = probabilities[0];
         exoplanetProbability = probabilities[1];
+        console.log('✅ Parsed array probabilities:', { notExoplanet: notExoplanetProbability, exoplanet: exoplanetProbability });
       }
-    } else if (prediction && typeof prediction === 'object') {
-      // Handle other possible formats
-      if ('output_probability' in prediction && Array.isArray(prediction.output_probability)) {
-        const probData = prediction.output_probability[0];
-        if (probData && typeof probData === 'object') {
-          exoplanetProbability = parseFloat(probData['1'] || probData['exoplanet'] || '0.5');
-          notExoplanetProbability = parseFloat(probData['0'] || probData['not_exoplanet'] || (1 - exoplanetProbability).toString());
-        }
+    }
+    // Another fallback: check for direct probability object
+    else if (prediction && typeof prediction === 'object') {
+      if ('0' in prediction && '1' in prediction) {
+        notExoplanetProbability = parseFloat(prediction['0']);
+        exoplanetProbability = parseFloat(prediction['1']);
+        console.log('✅ Parsed direct probabilities:', { notExoplanet: notExoplanetProbability, exoplanet: exoplanetProbability });
       }
     }
   } catch (error) {
-    console.error('Error parsing prediction data:', error);
-    console.log('Prediction data:', prediction);
-    // Use default values
+    console.error('❌ Error parsing prediction data:', error);
+    console.log('📊 Prediction data:', prediction);
+    // Use default values of 50/50
   }
   
-  const isExoplanet = exoplanetProbability > 0.5;
+  const isExoplanet = exoplanetProbability > notExoplanetProbability;
   const confidence = Math.max(exoplanetProbability, notExoplanetProbability) * 100;
 
   return (
@@ -68,7 +79,7 @@ export function LightCurveMLResults({ prediction, inputParameters }: LightCurveM
                   : 'bg-red-600 hover:bg-red-700'
               }`}
             >
-              {isExoplanet ? '✓ Confirmed Exoplanet' : '✗ False Positive'}
+              {isExoplanet ? '✓ Exoplanet Candidate' : '✗ False Positive'}
             </Badge>
           </div>
           
