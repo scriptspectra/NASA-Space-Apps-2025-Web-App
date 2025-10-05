@@ -22,11 +22,9 @@ const nextConfig = {
       }
     ]
   },
-  output: 'standalone',
   experimental: {
     optimizeCss: true
   },
-  swcMinify: true,
   poweredByHeader: false
 };
 
