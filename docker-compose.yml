@@ -12,8 +12,6 @@ services:
     build:
       context: ./lightcurve
       dockerfile: Dockerfile
-    ports:
-      - "9000:9000"
     volumes:
       - ./lightcurve/models:/app/models:ro
       - ./lightcurve/data:/app/data:ro
@@ -30,6 +28,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
+    ports:
+      - "${PORT:-3000}:3000"
     environment:
       NODE_ENV: "production"
       BACKEND_URL: "http://backend:8000"
