@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { getApiUrl } from "@/lib/api-config";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CSVUpload } from "@/components/CSVUpload";
+import { InferenceResultsTable } from "@/components/InferenceResultsTable";
 
 export default function TessForm() {
   const tessAccuracy = 95.48
@@ -17,6 +20,7 @@ export default function TessForm() {
   });
 
   const [result, setResult] = useState<string>("");
+  const [batchResults, setBatchResults] = useState<Array<any>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [accuracy, setAccuracy] = useState<number | null>(null);
 
@@ -108,6 +112,46 @@ export default function TessForm() {
     setLoading(false);
   };
 
+  const handleCSVData = async (data: Array<Record<string, string>>) => {
+    setLoading(true);
+    setBatchResults([]);
+
+    try {
+      // Process each row from the CSV
+      const results = await Promise.all(
+        data.map(async (row) => {
+          // Convert the row values to the format expected by the API
+          const values = Object.keys(formData).map(
+            (key) => parseFloat(row[key] || "0")
+          );
+
+          const response = await fetch(getApiUrl("/inference/tess"), {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              inputs: {
+                features: [values],
+              },
+            }),
+          });
+
+          const result = await response.json();
+          return {
+            input: row,
+            output: result.outputs,
+          };
+        })
+      );
+
+      setBatchResults(results);
+    } catch (error) {
+      console.error("❌ Batch processing error:", error);
+      alert("Error processing CSV data. Please check the console for details.");
+    }
+
+    setLoading(false);
+  };
+
   return (
   <div className="p-4 max-w-xl mx-auto w-full">
 <div className="flex gap-4 mb-5 w-full items-center p-4 justify-between mx-auto dark:bg-black bg-[#cecbbb] text-white dark:text-black rounded-2xl shadow-lg">
@@ -153,32 +197,64 @@ export default function TessForm() {
 
 </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid md:grid-cols-2 gap-x-8 gap-y-8">
-          {Object.keys(formData).map((key) => (
-            <label key={key} className="block">
-              <span className="block font-medium mb-1">{labels[key]}</span>
-              <input
-                type="number"
-                step="any"
-                name={key}
-                value={formData[key]}
-                onChange={handleChange}
-                placeholder=""
-                className="border p-2 w-full rounded"
-                required
-              />
-            </label>
-          ))}
-        </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-none border-1 border-[#1b943b] text-[#1b943b] px-4 py-2 rounded w-full"
-        >
-          {loading ? "Predicting..." : "Predict"}
-        </button>
-      </form>
+      <Tabs defaultValue="form" className="w-full">
+        <TabsList className="w-full">
+          <TabsTrigger value="form" className="w-full">
+            Input Form
+          </TabsTrigger>
+          <TabsTrigger value="csv" className="w-full">
+            CSV Upload
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="form">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-x-8 gap-y-8">
+              {Object.keys(formData).map((key) => (
+                <label key={key} className="block">
+                  <span className="block font-medium mb-1">{labels[key]}</span>
+                  <input
+                    type="number"
+                    step="any"
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    placeholder=""
+                    className="border p-2 w-full rounded"
+                    required
+                  />
+                </label>
+              ))}
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-none border-1 border-[#1b943b] text-[#1b943b] px-4 py-2 rounded w-full"
+            >
+              {loading ? "Predicting..." : "Predict"}
+            </button>
+          </form>
+        </TabsContent>
+
+        <TabsContent value="csv">
+          <div className="space-y-6">
+            <CSVUpload
+              onDataParsed={handleCSVData}
+              expectedHeaders={Object.keys(formData)}
+            />
+            {loading && <div className="text-center">Processing CSV data...</div>}
+            {batchResults.length > 0 && (
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold mb-4">Batch Results</h3>
+                <InferenceResultsTable
+                  results={batchResults}
+                  modelType="tess"
+                />
+              </div>
+            )}
+          </div>
+        </TabsContent>
+      </Tabs>
 
       {result && (
         <div className="mt-6 p-6 border rounded-lg bg-white dark:bg-[#1F1F1F] shadow-lg">
