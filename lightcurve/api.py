@@ -14,7 +14,7 @@ import logging
 
 # Import your existing modules
 from lightcurve_build_pipeline import run_pipeline
-from config import PipelineConfig
+from config import PipelineConfig, FastPipelineConfig
 from fast_transit import fit_trapezoid_from_lightcurve, lc_to_arrays
 from inference import load_model, run_inference
 from plotting import plot_results
@@ -56,7 +56,7 @@ import logging
 
 # Import your existing modules
 from lightcurve_build_pipeline import run_pipeline
-from config import PipelineConfig
+from config import PipelineConfig, FastPipelineConfig
 from fast_transit import fit_trapezoid_from_lightcurve, lc_to_arrays
 from inference import load_model, run_inference
 from plotting import plot_results
@@ -167,8 +167,9 @@ async def upload_fits_file(file: UploadFile = File(...)):
         
         logger.info(f"Saved FITS file for task {task_id}: {fits_path}")
         
-        # Run the pipeline
-        cfg = PipelineConfig()
+        # Run the pipeline with fast configuration for web usage
+        cfg = FastPipelineConfig()
+        logger.info("Using FastPipelineConfig for optimized web performance")
         result = run_pipeline(local_paths=str(fits_path), cfg=cfg)
         
         # Generate plots

@@ -19,19 +19,39 @@ class PipelineConfig:
         duration_min: Minimum transit duration for BLS (days)
         duration_max: Maximum transit duration for BLS (days)
     """
-    # Flattening
-    window_length: int = 101
+    # Flattening - reduced for faster processing
+    window_length: int = 51  # Reduced from 101
     polyorder: int = 2
     
     # Outlier removal
     sigma_clip_lower: float = 20.0
     sigma_clip_upper: float = 3.0
     
-    # BLS
+    # BLS - optimized for faster search
     period_min: float = 0.5
-    period_max: float = 20.0
+    period_max: float = 10.0  # Reduced from 20.0
     duration_min: float = 0.01
     duration_max: float = 0.3
+
+
+@dataclass
+class FastPipelineConfig:
+    """
+    Fast configuration for web usage - optimized for speed over precision.
+    """
+    # Flattening - minimal for speed
+    window_length: int = 25
+    polyorder: int = 1
+    
+    # Outlier removal - less aggressive
+    sigma_clip_lower: float = 10.0
+    sigma_clip_upper: float = 5.0
+    
+    # BLS - reduced search space
+    period_min: float = 1.0
+    period_max: float = 5.0
+    duration_min: float = 0.02
+    duration_max: float = 0.2
 
 
 @dataclass

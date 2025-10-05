@@ -14,11 +14,33 @@ interface LightCurveMLResultsProps {
 }
 
 export function LightCurveMLResults({ prediction, inputParameters }: LightCurveMLResultsProps) {
-  // Extract prediction probabilities
-  // Assuming the model outputs probabilities for [not_exoplanet, exoplanet]
-  const probabilities = prediction[0] || [];
-  const exoplanetProbability = probabilities[1] || probabilities[0]; // Adjust based on model output format
-  const notExoplanetProbability = probabilities[0] || (1 - exoplanetProbability);
+  // Handle different response formats from the ML API
+  let exoplanetProbability = 0.5;
+  let notExoplanetProbability = 0.5;
+  
+  try {
+    if (Array.isArray(prediction) && prediction.length > 0) {
+      // Format: [[prob_class_0, prob_class_1]]
+      const probabilities = prediction[0];
+      if (Array.isArray(probabilities) && probabilities.length >= 2) {
+        notExoplanetProbability = probabilities[0];
+        exoplanetProbability = probabilities[1];
+      }
+    } else if (prediction && typeof prediction === 'object') {
+      // Handle other possible formats
+      if ('output_probability' in prediction && Array.isArray(prediction.output_probability)) {
+        const probData = prediction.output_probability[0];
+        if (probData && typeof probData === 'object') {
+          exoplanetProbability = parseFloat(probData['1'] || probData['exoplanet'] || '0.5');
+          notExoplanetProbability = parseFloat(probData['0'] || probData['not_exoplanet'] || (1 - exoplanetProbability).toString());
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error parsing prediction data:', error);
+    console.log('Prediction data:', prediction);
+    // Use default values
+  }
   
   const isExoplanet = exoplanetProbability > 0.5;
   const confidence = Math.max(exoplanetProbability, notExoplanetProbability) * 100;

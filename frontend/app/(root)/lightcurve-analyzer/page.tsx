@@ -93,61 +93,103 @@ export default function LightCurveAnalyzerPage() {
       const formData = new FormData();
       formData.append('file', file);
 
+      console.log('Uploading file:', file.name, 'Size:', file.size);
+
       const uploadResponse = await fetch('/api/lightcurve/upload-fits', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('Upload response status:', uploadResponse.status);
+
       if (!uploadResponse.ok) {
-        throw new Error('Failed to upload FITS file');
+        const errorText = await uploadResponse.text();
+        console.error('Upload error:', errorText);
+        throw new Error(`Failed to upload FITS file: ${errorText}`);
       }
 
       const uploadResult = await uploadResponse.json();
-      const taskId = uploadResult.task_id;
-      setCurrentTaskId(taskId);
+      console.log('Upload result:', uploadResult);
       
+      const taskId = uploadResult.task_id;
+      if (!taskId) {
+        throw new Error('No task ID received from upload');
+      }
+      
+      setCurrentTaskId(taskId);
       updateStepStatus('upload', 'completed');
 
       // Get the folded light curve image
+      console.log('Fetching image for task:', taskId);
       const imageResponse = await fetch(`/api/lightcurve/folded-image/${taskId}`);
+      console.log('Image response status:', imageResponse.status);
+      
       if (imageResponse.ok) {
         const imageBlob = await imageResponse.blob();
         const imageUrl = URL.createObjectURL(imageBlob);
         setLightCurveImage(imageUrl);
+        console.log('Image URL created successfully');
+      } else {
+        console.warn('Failed to fetch image:', imageResponse.status);
       }
 
       // Step 2: Extract transit parameters
       updateStepStatus('parameters', 'processing');
+      console.log('Extracting parameters for task:', taskId);
       
       const paramsResponse = await fetch(`/api/lightcurve/transit-parameters/${taskId}`, {
         method: 'POST',
       });
 
+      console.log('Parameters response status:', paramsResponse.status);
+
       if (!paramsResponse.ok) {
-        throw new Error('Failed to extract transit parameters');
+        const errorText = await paramsResponse.text();
+        console.error('Parameters error:', errorText);
+        throw new Error(`Failed to extract transit parameters: ${errorText}`);
       }
 
       const paramsResult = await paramsResponse.json();
+      console.log('Parameters result:', paramsResult);
+      
+      if (!paramsResult.parameters) {
+        throw new Error('No parameters received from extraction');
+      }
+      
       setTransitParameters(paramsResult.parameters);
       updateStepStatus('parameters', 'completed');
 
       // Step 3: Run ML inference
       updateStepStatus('inference', 'processing');
+      console.log('Running inference for task:', taskId);
       
       const inferenceResponse = await fetch(`/api/lightcurve/ml-inference/${taskId}`, {
         method: 'POST',
       });
 
+      console.log('Inference response status:', inferenceResponse.status);
+
       if (!inferenceResponse.ok) {
-        throw new Error('Failed to run ML inference');
+        const errorText = await inferenceResponse.text();
+        console.error('Inference error:', errorText);
+        throw new Error(`Failed to run ML inference: ${errorText}`);
       }
 
       const inferenceResult = await inferenceResponse.json();
+      console.log('Inference result:', inferenceResult);
+      
+      if (!inferenceResult.inference_results) {
+        throw new Error('No inference results received');
+      }
+      
       setMLResults(inferenceResult.inference_results);
       updateStepStatus('inference', 'completed');
 
+      console.log('✅ Complete workflow finished successfully');
+
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+      console.error('❌ Workflow error:', err);
       setError(errorMessage);
       
       // Mark current step as error

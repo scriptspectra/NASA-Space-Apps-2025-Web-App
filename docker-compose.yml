@@ -3,8 +3,6 @@ services:
     build:
       context: ./backend_ml
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
     volumes:
       - ./backend_ml/models:/app/models:ro
     networks:
@@ -32,8 +30,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
-    ports:
-      - "${PORT:-3000}:3000"
     environment:
       NODE_ENV: "production"
       BACKEND_URL: "http://backend:8000"

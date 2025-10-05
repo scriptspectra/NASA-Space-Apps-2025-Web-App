@@ -11,7 +11,7 @@ The Light Curve Analyzer allows users to upload FITS pixel files, generate light
 The application now consists of three main services:
 
 1. **Frontend** (Next.js) - Port 3000
-2. **Backend ML** (FastAPI) - Port 8000  
+2. **Backend ML** (FastAPI) - Port 8000
 3. **Light Curve API** (FastAPI) - Port 9000
 
 ## Features
@@ -67,9 +67,9 @@ The application now consists of three main services:
 
 ```yaml
 services:
-  backend:        # Port 8000 - Existing ML backend
-  lightcurve:     # Port 9000 - New lightcurve analysis
-  frontend:       # Port 3000 - Updated with lightcurve integration
+  backend: # Port 8000 - Existing ML backend
+  lightcurve: # Port 9000 - New lightcurve analysis
+  frontend: # Port 3000 - Updated with lightcurve integration
 ```
 
 ### Environment Variables
@@ -138,6 +138,7 @@ curl -X POST -F "file=@lightcurve/pixelfiles/TIC_25155310_TESS_TPF.fits" http://
 ## Models
 
 The lightcurve service uses:
+
 - **`koi_rf_model.onnx`** - Random Forest model for exoplanet classification
 - Input: 4 transit parameters (t0, depth, duration, baseline)
 - Output: Binary classification with probabilities
@@ -145,6 +146,7 @@ The lightcurve service uses:
 ## Dependencies
 
 ### Python (Light Curve API)
+
 - lightkurve>=2.5.1 - Light curve analysis
 - astropy>=7.1.0 - Astronomy data handling
 - onnxruntime>=1.15.1 - ML model inference
@@ -152,6 +154,7 @@ The lightcurve service uses:
 - scipy, matplotlib, pandas - Scientific computing
 
 ### Frontend
+
 - React components for file upload and result display
 - Next.js API routes for proxying requests
 - Tailwind CSS for styling
