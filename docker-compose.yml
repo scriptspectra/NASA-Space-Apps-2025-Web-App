@@ -10,6 +10,7 @@ volumes:
 
 services:
   backend:
+    restart: unless-stopped
     build:
       context: ./backend_ml
       dockerfile: Dockerfile
@@ -26,6 +27,7 @@ services:
       retries: 5
 
   lightcurve:
+    restart: unless-stopped
     build:
       context: ./lightcurve
       dockerfile: Dockerfile
@@ -44,6 +46,7 @@ services:
       retries: 5
 
   frontend:
+    restart: unless-stopped
     build:
       context: ./frontend
       dockerfile: Dockerfile
