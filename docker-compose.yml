@@ -1,57 +1,84 @@
+version: "3.8"
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
+
 services:
   backend:
     build:
       context: ./backend_ml
       dockerfile: Dockerfile
+    expose:
+      - "8000"
     volumes:
       - ./backend_ml/models:/app/models:ro
-    networks:
-      - app
+    networks: [app]
+    # Optional healthcheck (expects /health in backend; add if missing)
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/health || exit 1"]
+      interval: 20s
+      timeout: 3s
+      retries: 5
 
   lightcurve:
     build:
       context: ./lightcurve
       dockerfile: Dockerfile
+    expose:
+      - "9000"
     volumes:
       - ./lightcurve/models:/app/models:ro
       - ./lightcurve/data:/app/data:ro
       - ./lightcurve/pixelfiles:/app/pixelfiles:ro
-    networks:
-      - app
+    networks: [app]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/api/v1/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test:
+        ["CMD-SHELL", "curl -fsS http://localhost:9000/api/v1/health || exit 1"]
+      interval: 20s
+      timeout: 3s
+      retries: 5
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "${PORT:-3000}:3000"
-    environment:
-      NODE_ENV: "production"
-      BACKEND_URL: "http://backend:8000"
-      LIGHTCURVE_API_URL: "http://lightcurve:9000"
-      NEXT_PUBLIC_API_URL: "http://localhost:8000"
-      PORT: "3000"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+    expose:
+      - "3000"
+    networks: [app]
     depends_on:
       - backend
       - lightcurve
-    networks:
-      - app
+    environment:
+      # Server-side environment variables for internal service communication
+      BACKEND_URL: "http://backend:8000"
+      LIGHTCURVE_API_URL: "http://lightcurve:9000"
+      # Client-side environment variables for browser requests (via Caddy proxy)
+      NEXT_PUBLIC_BACKEND_BASE: "/api"
+      NEXT_PUBLIC_LIGHTCURVE_BASE: "/lc"
+    # Optional healthcheck if frontend exposes a simple path:
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000 || exit 1"]
+      interval: 20s
+      timeout: 3s
+      retries: 5
 
-# Internal bridge network for service communication
-networks:
-  app:
-    driver: bridge
-# Usage:
-# - Browser access: http://localhost:3000 (frontend only)
-# - Backend is internal: Next.js server calls backend via BACKEND_URL
-# - To expose backend in dev, add 'ports: ["8000:8000"]' to backend service
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
+      - lightcurve
+    networks: [app]

@@ -5,7 +5,7 @@
 export const getBackendUrl = () => {
   // Server-side: use environment variable
   if (typeof window === 'undefined') {
-    return process.env.BACKEND_URL || 'http://localhost:8000';
+    return process.env.BACKEND_URL || 'http://backend:8000';
   }
   
   // Client-side: use Next.js API routes as proxy

@@ -26,12 +26,7 @@ RUN mkdir -p /app/api_temp /app/models /app/plots
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
-# Expose Cloud Run port (default 8080)
-EXPOSE 8080
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:${PORT:-8080}/health || exit 1
+EXPOSE 9000
 
 # Run the application with uvicorn and dynamic PORT
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["sh","-c","uvicorn api:app --host 0.0.0.0 --port ${PORT:-9000}"]
