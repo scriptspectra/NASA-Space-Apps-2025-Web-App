@@ -1,4 +1,4 @@
-# Use Python 3.11 as base image
+# Use Python 3.11 slim
 FROM python:3.11-slim
 
 # Set working directory
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first (for better caching)
+# Copy requirements first for caching
 COPY requirements.txt .
 
 # Install Python dependencies
@@ -26,12 +26,12 @@ RUN mkdir -p /app/api_temp /app/models /app/plots
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
-# Expose port
-EXPOSE 9000
+# Expose Cloud Run port (default 8080)
+EXPOSE 8080
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:9000/api/v1/health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8080}/health || exit 1
 
-# Run the application
-CMD ["python", "api.py"]
+# Run the application with uvicorn and dynamic PORT
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]

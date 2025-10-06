@@ -5,10 +5,9 @@ from typing import Dict, Any
 import onnxruntime as ort
 import onnx
 import numpy as np
+import os
 
 app = FastAPI(title="Exoplanet ONNX Inference API")
-
-from fastapi.middleware.cors import CORSMiddleware
 
 # CORS for frontend
 app.add_middleware(
@@ -23,25 +22,33 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load all three models
+# Model paths
 tess_model_path = "models/TESS_Model_v2.onnx"
 k2_model_path = "models/k2_model.onnx"
 kepler_model_path = "models/KOI_Model_v2.onnx"
 
-try:
-    tess_session = ort.InferenceSession(tess_model_path)
-except Exception as e:
-    raise RuntimeError(f"Failed to load TESS model: {e}")
+# Lazy-loaded sessions
+tess_session = None
+k2_session = None
+kepler_session = None
 
-try:
-    k2_session = ort.InferenceSession(k2_model_path)
-except Exception as e:
-    raise RuntimeError(f"Failed to load K2 model: {e}")
+def get_tess_session():
+    global tess_session
+    if tess_session is None:
+        tess_session = ort.InferenceSession(tess_model_path)
+    return tess_session
 
-try:
-    kepler_session = ort.InferenceSession(kepler_model_path)
-except Exception as e:
-    raise RuntimeError(f"Failed to load Kepler model: {e}")
+def get_k2_session():
+    global k2_session
+    if k2_session is None:
+        k2_session = ort.InferenceSession(k2_model_path)
+    return k2_session
+
+def get_kepler_session():
+    global kepler_session
+    if kepler_session is None:
+        kepler_session = ort.InferenceSession(kepler_model_path)
+    return kepler_session
 
 class InferenceRequest(BaseModel):
     inputs: Dict[str, Any]
@@ -75,26 +82,29 @@ def get_model_accuracy(model_path: str):
 # Inference endpoints
 @app.post("/inference/tess")
 async def tess_inference(request: InferenceRequest):
-    result = run_inference(tess_session, request.inputs)
+    session = get_tess_session()
+    result = run_inference(session, request.inputs)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["error"])
     return result
 
 @app.post("/inference/k2")
 async def k2_inference(request: InferenceRequest):
-    result = run_inference(k2_session, request.inputs)
+    session = get_k2_session()
+    result = run_inference(session, request.inputs)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["error"])
     return result
 
 @app.post("/inference/kepler")
 async def kepler_inference(request: InferenceRequest):
-    result = run_inference(kepler_session, request.inputs)
+    session = get_kepler_session()
+    result = run_inference(session, request.inputs)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["error"])
     return result
 
-# ✅ Accuracy endpoints
+# Accuracy endpoints
 @app.get("/accuracy/tess")
 async def tess_accuracy():
     acc = get_model_accuracy(tess_model_path)
@@ -116,6 +126,11 @@ async def kepler_accuracy():
         raise HTTPException(status_code=404, detail="Accuracy not found in model metadata")
     return {"accuracy": acc}
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
