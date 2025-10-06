@@ -16,3 +16,22 @@ xplora.mihiran.com {
     # Everything else goes to the frontend
     reverse_proxy frontend:3000
 }
+
+http://localhost {
+    encode gzip
+
+    # Backend API (FastAPI on port 8080)
+    @backend path /api* /docs* /openapi.json
+    handle_path /api* {
+        reverse_proxy backend:8080
+    }
+
+    # Lightcurve API (FastAPI on port 9000)
+    @lightcurve path /lc* /lc/docs* /lc/openapi.json
+    handle_path /lc* {
+        reverse_proxy lightcurve:9000
+    }
+
+    # Everything else goes to the frontend
+    reverse_proxy frontend:3000
+}
