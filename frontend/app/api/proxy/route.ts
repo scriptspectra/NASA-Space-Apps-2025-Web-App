@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+// Use direct backend URL for internal communication
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://backend:8080';
 
 async function handleRequest(request: Request, method: 'GET' | 'POST' = 'GET') {

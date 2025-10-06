@@ -14,8 +14,12 @@ services:
     build:
       context: ./backend_ml
       dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Add port mapping for debugging
     expose:
       - "8080"
+    environment:
+      - PORT=8080
     volumes:
       - ./backend_ml/models:/app/models:ro
     networks: [app]
@@ -31,8 +35,12 @@ services:
     build:
       context: ./lightcurve
       dockerfile: Dockerfile
+    ports:
+      - "9000:9000" # Add port mapping for debugging
     expose:
       - "9000"
+    environment:
+      - PORT=9000
     volumes:
       - ./lightcurve/models:/app/models:ro
       - ./lightcurve/data:/app/data:ro
@@ -50,12 +58,16 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Add port mapping for debugging
     expose:
       - "3000"
     networks: [app]
     depends_on:
-      - backend
-      - lightcurve
+      backend:
+        condition: service_healthy
+      lightcurve:
+        condition: service_healthy
     environment:
       # Server-side environment variables for internal service communication
       BACKEND_URL: "http://backend:8080"

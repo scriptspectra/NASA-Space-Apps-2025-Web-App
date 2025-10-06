@@ -1,6 +1,6 @@
 // Utility function to get the backend API URL
 // For client-side requests, we'll proxy through Next.js API routes
-// For server-side requests, we'll use the BACKEND_URL environment variable
+// For server-side requests, we'll use direct backend URL
 
 export function getBackendUrl(): string {
     return process.env.BACKEND_URL || 'http://backend:8080';
