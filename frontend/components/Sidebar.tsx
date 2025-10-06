@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { Activity, Bell, Book, Brain, Compass, Eye, Home, Info, Orbit, Plus, Settings, Sparkles, Telescope, TrendingUp } from 'lucide-react'
+import { Activity, Bell, Book, Brain, Compass, Eye, Home, Info, Plus, Settings, Sparkles, Telescope, TrendingUp } from 'lucide-react'
 import { useParams, usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -32,11 +32,6 @@ const Sidebar = () => {
       icon: TrendingUp,
       href: "/lightcurve-analyzer",
       label: "Light Curve Analyzer",
-    },
-    {
-      icon: Orbit,
-      href: `/planets`,
-      label: "Planets",
     },
     {
       icon: Brain,
