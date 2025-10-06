@@ -1,10 +1,10 @@
 xplora.mihiran.com {
     encode gzip
 
-    # Backend API (FastAPI on port 8000)
+    # Backend API (FastAPI on port 8080)
     @backend path /api* /docs* /openapi.json
     handle_path /api* {
-        reverse_proxy backend:8000
+        reverse_proxy backend:8080
     }
 
     # Lightcurve API (FastAPI on port 9000)

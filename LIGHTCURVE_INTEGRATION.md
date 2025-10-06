@@ -11,7 +11,7 @@ The Light Curve Analyzer allows users to upload FITS pixel files, generate light
 The application now consists of three main services:
 
 1. **Frontend** (Next.js) - Port 3000
-2. **Backend ML** (FastAPI) - Port 8000
+2. **Backend ML** (FastAPI) - Port 8080
 3. **Light Curve API** (FastAPI) - Port 9000
 
 ## Features
@@ -67,7 +67,7 @@ The application now consists of three main services:
 
 ```yaml
 services:
-  backend: # Port 8000 - Existing ML backend
+  backend: # Port 8080 - Existing ML backend
   lightcurve: # Port 9000 - New lightcurve analysis
   frontend: # Port 3000 - Updated with lightcurve integration
 ```
@@ -163,7 +163,7 @@ The lightcurve service uses:
 
 ### Common Issues
 
-1. **Port conflicts**: Ensure ports 3000, 8000, 9000 are available
+1. **Port conflicts**: Ensure ports 3000, 8080, 9000 are available
 2. **Memory issues**: FITS file processing can be memory intensive
 3. **Model loading**: Ensure `koi_rf_model.onnx` exists in `lightcurve/models/`
 

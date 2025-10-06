@@ -32,7 +32,7 @@ This directory contains the FastAPI backend server for exoplanet classification 
 
 ### With Python Virtual Environment
 
-```bash
+````bash
 # Create and activate virtual environment
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
@@ -41,8 +41,11 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 # Run the server
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+````
+
+````
 
 ### With Docker
 
@@ -52,8 +55,11 @@ docker-compose up backend
 
 # Or build directly
 docker build -t exoplanet-backend .
-docker run -p 8000:8000 exoplanet-backend
-```
+```bash
+docker run -p 8080:8080 exoplanet-backend
+````
+
+````
 
 ## API Usage
 
@@ -65,7 +71,7 @@ The API expects input features in the following format:
     "features": [[value1, value2, value3, ...]]
   }
 }
-```
+````
 
 Response format:
 

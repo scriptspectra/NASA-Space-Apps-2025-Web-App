@@ -44,8 +44,8 @@ NASA-Space-Apps-2025-Web-App/
 
 3. **Access the application**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000
-   - API Documentation: http://localhost:8000/docs
+   - Backend API: http://localhost:8080
+   - API Documentation: http://localhost:8080/docs
 
 ### Local Development
 
@@ -59,12 +59,15 @@ npm run dev
 
 #### Backend
 
-```bash
+````bash
 cd backend_ml
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+````
+
 ```
 
 ## Features
@@ -110,3 +113,4 @@ This project is open source and available under the [MIT License](LICENSE).
 - NASA for providing the mission data
 - Space Apps Challenge organizers
 - The exoplanet research community
+```

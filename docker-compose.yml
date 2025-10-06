@@ -14,13 +14,13 @@ services:
       context: ./backend_ml
       dockerfile: Dockerfile
     expose:
-      - "8000"
+      - "8080"
     volumes:
       - ./backend_ml/models:/app/models:ro
     networks: [app]
     # Optional healthcheck (expects /health in backend; add if missing)
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/health || exit 1"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/health || exit 1"]
       interval: 20s
       timeout: 3s
       retries: 5
@@ -55,7 +55,7 @@ services:
       - lightcurve
     environment:
       # Server-side environment variables for internal service communication
-      BACKEND_URL: "http://backend:8000"
+      BACKEND_URL: "http://backend:8080"
       LIGHTCURVE_API_URL: "http://lightcurve:9000"
       # Client-side environment variables for browser requests (via Caddy proxy)
       NEXT_PUBLIC_BACKEND_BASE: "/api"
