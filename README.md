@@ -66,7 +66,54 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8080 --reload
-````
+```
+
+## Deployment
+
+### Deploy: Render (Backends) + Vercel (Frontend)
+
+This application can be deployed with backends on Render and the frontend on Vercel for production.
+
+#### Render (Backends)
+
+1. **Create services from this repo**
+   - Use the provided `render.yaml` file for infrastructure as code
+   - Or manually create two Web Services from this repository
+
+2. **Environment variables for both services:**
+   ```
+   CORS_ORIGINS=https://YOUR-APP.vercel.app,https://www.YOUR-DOMAIN.com
+   INTERNAL_AUTH_TOKEN=<a-random-secret-you-also-set-in-vercel>
+   ```
+
+3. **Service configuration:**
+   - **backend-ml**: Health check at `/health`, port from `$PORT` env (default 8080)
+   - **lightcurve**: Health check at `/api/v1/health`, port from `$PORT` env (default 9000)
+
+#### Vercel (Frontend)
+
+1. **Project Settings → Environment Variables (Server-side only):**
+   ```
+   BACKEND_URL=https://<backend-ml-service>.onrender.com
+   LIGHTCURVE_API_URL=https://<lightcurve-service>.onrender.com
+   INTERNAL_AUTH_TOKEN=<same-as-render-to-enable-server-to-server-auth>
+   ```
+
+2. **No client-side env vars needed**
+   - Browser calls only Next.js API routes (proxy pattern)
+   - No `NEXT_PUBLIC_*` variables required for production
+
+#### Health Check
+
+After deployment, visit `<your-frontend-domain>/api/health` to verify all services are healthy.
+
+#### Large File Uploads
+
+For large FITS files, consider implementing signed uploads to object storage. The current streaming proxy handles moderate file sizes effectively.
+
+## Local Development (Docker Compose)
+
+For local development, use Docker Compose as before:`
 
 ```
 

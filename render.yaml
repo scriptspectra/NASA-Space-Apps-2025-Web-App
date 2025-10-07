@@ -1,0 +1,30 @@
+# Render infrastructure as code
+# Deploy backends as Docker web services
+services:
+  - type: web
+    name: backend-ml
+    env: docker
+    rootDir: backend_ml
+    dockerfilePath: backend_ml/Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    plan: starter
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://YOUR-APP.vercel.app,https://www.YOUR-DOMAIN.com
+      - key: INTERNAL_AUTH_TOKEN
+        sync: false  # set in Render dashboard
+
+  - type: web
+    name: lightcurve
+    env: docker
+    rootDir: lightcurve
+    dockerfilePath: lightcurve/Dockerfile
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    plan: starter
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://YOUR-APP.vercel.app,https://www.YOUR-DOMAIN.com
+      - key: INTERNAL_AUTH_TOKEN
+        sync: false  # set in Render dashboard
