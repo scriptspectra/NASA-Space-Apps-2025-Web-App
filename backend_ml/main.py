@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any
@@ -7,17 +7,34 @@ import onnx
 import numpy as np
 import os
 
-app = FastAPI(title="Exoplanet ONNX Inference API")
+# Internal auth dependency
+INTERNAL_TOKEN = os.getenv("INTERNAL_AUTH_TOKEN")
 
-# CORS for frontend
+async def require_internal_token(x_internal_token: str | None = Header(default=None)):
+    if INTERNAL_TOKEN and x_internal_token != INTERNAL_TOKEN:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
+
+app = FastAPI(
+    title="Exoplanet ONNX Inference API",
+    dependencies=[Depends(require_internal_token)] if INTERNAL_TOKEN else []
+)
+
+# Internal auth dependency
+INTERNAL_TOKEN = os.getenv("INTERNAL_AUTH_TOKEN")
+
+async def require_internal_token(x_internal_token: str | None = Header(default=None)):
+    if INTERNAL_TOKEN and x_internal_token != INTERNAL_TOKEN:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
+
+# CORS for frontend - env-driven origins
+origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
+    allow_origins=origins if origins else [
         "http://localhost:3000",
         "http://frontend:3000",
-        "http://127.0.0.1:3000",
-        "https://xplora.mihiran.com",
-        "http://xplora.mihiran.com"
+        "http://127.0.0.1:3000"
     ],
     allow_credentials=True,
     allow_methods=["*"],
