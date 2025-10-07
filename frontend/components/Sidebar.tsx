@@ -34,11 +34,6 @@ const Sidebar = () => {
       label: "Light Curve Analyzer",
     },
     {
-      icon: Orbit,
-      href: `/planets`,
-      label: "Planets",
-    },
-    {
       icon: Brain,
       href: `/learn`,
       label: "Learn",

@@ -19,9 +19,6 @@ import { useBackend } from '@/lib/backendContext';
 
 const page = () => {
   const [loading, setLoading] = useState(false);
-  const data = useBackend()
-
-  if(!data) return <div>Loading...</div>
 
   useEffect(() => {
     // Only show loading animation if it hasn't been shown before
