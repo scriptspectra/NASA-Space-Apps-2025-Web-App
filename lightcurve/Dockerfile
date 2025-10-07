@@ -20,6 +20,9 @@ RUN pip install --upgrade pip && \
 # Copy application code
 COPY . .
 
+# Copy model file into the image (no volume mount needed for Render)
+COPY models/koi_rf_model.onnx ./models/koi_rf_model.onnx
+
 # Create necessary directories
 RUN mkdir -p /app/api_temp /app/models /app/plots
 

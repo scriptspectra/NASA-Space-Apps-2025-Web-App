@@ -6,45 +6,6 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI, File, HTTPException, UploadFile
-from fastapi.responses import FileResponse, JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
-import logging
-
-# Import your existing modules
-from lightcurve_build_pipeline import run_pipeline
-from config import PipelineConfig, FastPipelineConfig
-from fast_transit import fit_trapezoid_from_lightcurve, lc_to_arrays
-from inference import load_model, run_inference
-from plotting import plot_results
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# Initialize FastAPI app
-app = FastAPI(
-    title="Lightcurve Analysis API",
-    description="API for processing lightcurve FITS files through the complete analysis pipeline",
-    version="1.0.0"
-)
-
-# Enable CORS for frontend access
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://frontend:3000",
-        "http://127.0.0.1:3000",
-        "https://xplora.mihiran.com",
-        "http://xplora.mihiran.com"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 import io
 import os
 import tempfile
@@ -54,7 +15,7 @@ from typing import Dict, List, Tuple
 from contextlib import asynccontextmanager
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, UploadFile, Header, Depends, status
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -70,6 +31,35 @@ from plotting import plot_results
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Internal auth dependency
+INTERNAL_TOKEN = os.getenv("INTERNAL_AUTH_TOKEN")
+
+async def require_internal_token(x_internal_token: str | None = Header(default=None)):
+    if INTERNAL_TOKEN and x_internal_token != INTERNAL_TOKEN:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
+
+# Initialize FastAPI app
+app = FastAPI(
+    title="Lightcurve Analysis API",
+    description="API for processing lightcurve FITS files through the complete analysis pipeline",
+    version="1.0.0"
+)
+
+# Enable CORS for frontend access - env-driven origins
+origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins if origins else [
+        "http://localhost:3000",
+        "http://frontend:3000",
+        "http://127.0.0.1:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Global variables for model and temporary storage
 model_session = None
@@ -96,12 +86,13 @@ async def lifespan(app: FastAPI):
     # Shutdown
     logger.info("Shutting down API...")
 
-# Initialize FastAPI app with lifespan
+# Initialize FastAPI app with lifespan and optional global auth
 app = FastAPI(
     title="Lightcurve Analysis API",
     description="API for processing lightcurve FITS files through the complete analysis pipeline",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
+    dependencies=[Depends(require_internal_token)] if INTERNAL_TOKEN else []
 )
 
 class LightcurveProcessingResponse:
@@ -380,10 +371,6 @@ async def cleanup_task(task_id: str):
         raise HTTPException(status_code=404, detail="Task ID not found")
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "api:app",
-        host="0.0.0.0",
-        port=9000,
-        reload=True,
-        log_level="info"
-    )
+    import os, uvicorn
+    port = int(os.getenv("PORT", "9000"))
+    uvicorn.run("api:app", host="0.0.0.0", port=port, log_level="info")
