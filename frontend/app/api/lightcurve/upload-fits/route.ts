@@ -20,10 +20,19 @@ export async function POST(request: NextRequest) {
     
     console.log(`📁 File received: ${file.name}, size: ${file.size} bytes`);
     
+    // Prepare headers with optional auth
+    const headers: HeadersInit = {};
+    const token = process.env.INTERNAL_AUTH_TOKEN;
+    if (token) {
+      headers['x-internal-token'] = token;
+    }
+    
     // Forward the form data to the lightcurve API
     const response = await fetch(`${LIGHTCURVE_API_URL}/api/v1/upload-fits`, {
       method: 'POST',
       body: formData,
+      headers,
+      cache: 'no-store',
     });
 
     const responseText = await response.text();

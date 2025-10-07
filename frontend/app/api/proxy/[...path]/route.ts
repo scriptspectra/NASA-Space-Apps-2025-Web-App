@@ -10,11 +10,21 @@ export async function GET(request: NextRequest) {
 
   try {
     console.log(`[Frontend API] Attempting to connect to: ${backendUrl}`);
+    
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+    
+    // Add internal auth token if configured
+    const token = process.env.INTERNAL_AUTH_TOKEN;
+    if (token) {
+      headers.set('x-internal-token', token);
+    }
+    
     const response = await fetch(backendUrl, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
+      cache: 'no-store',
     });
 
     if (!response.ok) {
@@ -46,12 +56,21 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     console.log(`[Frontend API] POST to: ${backendUrl}`);
     
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+    
+    // Add internal auth token if configured
+    const token = process.env.INTERNAL_AUTH_TOKEN;
+    if (token) {
+      headers.set('x-internal-token', token);
+    }
+    
     const response = await fetch(backendUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(body),
+      cache: 'no-store',
     });
 
     if (!response.ok) {

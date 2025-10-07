@@ -10,7 +10,17 @@ export async function GET(
   try {
     const taskId = params.taskId;
     
-    const response = await fetch(`${LIGHTCURVE_API_URL}/api/v1/folded-image/${taskId}`);
+    // Prepare headers with optional auth
+    const headers: HeadersInit = {};
+    const token = process.env.INTERNAL_AUTH_TOKEN;
+    if (token) {
+      headers['x-internal-token'] = token;
+    }
+    
+    const response = await fetch(`${LIGHTCURVE_API_URL}/api/v1/folded-image/${taskId}`, {
+      headers,
+      cache: 'no-store',
+    });
 
     if (!response.ok) {
       if (response.status === 404) {

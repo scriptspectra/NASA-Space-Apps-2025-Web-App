@@ -11,12 +11,20 @@ export async function GET() {
     timestamp: new Date().toISOString(),
   };
 
+  // Prepare headers with optional auth
+  const headers: HeadersInit = { 'Content-Type': 'application/json' };
+  const token = process.env.INTERNAL_AUTH_TOKEN;
+  if (token) {
+    headers['x-internal-token'] = token;
+  }
+
   try {
     // Test backend connectivity
     console.log(`[Health Check] Testing backend at: ${BACKEND_URL}`);
     const backendResponse = await fetch(`${BACKEND_URL}/health`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
+      cache: 'no-store',
     });
     healthStatus.backend = backendResponse.ok ? 'ok' : `error (${backendResponse.status})`;
   } catch (error) {
@@ -29,7 +37,8 @@ export async function GET() {
     console.log(`[Health Check] Testing lightcurve at: ${LIGHTCURVE_API_URL}`);
     const lightcurveResponse = await fetch(`${LIGHTCURVE_API_URL}/api/v1/health`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
+      cache: 'no-store',
     });
     healthStatus.lightcurve = lightcurveResponse.ok ? 'ok' : `error (${lightcurveResponse.status})`;
   } catch (error) {

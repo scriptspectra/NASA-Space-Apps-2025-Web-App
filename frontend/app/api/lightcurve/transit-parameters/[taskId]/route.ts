@@ -11,8 +11,17 @@ export async function POST(
     const taskId = params.taskId;
     console.log(`🔄 Extracting transit parameters for task: ${taskId}`);
     
+    // Prepare headers with optional auth
+    const headers: HeadersInit = {};
+    const token = process.env.INTERNAL_AUTH_TOKEN;
+    if (token) {
+      headers['x-internal-token'] = token;
+    }
+    
     const response = await fetch(`${LIGHTCURVE_API_URL}/api/v1/transit-parameters/${taskId}`, {
       method: 'POST',
+      headers,
+      cache: 'no-store',
     });
 
     console.log(`📡 Parameters API response: ${response.status}`);
