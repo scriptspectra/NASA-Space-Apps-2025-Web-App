@@ -86,7 +86,7 @@ const DetectionMethodsPage = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse text-sm">
           <thead>
-            <tr className="bg-[#D4481E] text-white">
+            <tr className="bg-[#2563EB] text-white">
               <th className="p-3 text-left">Detection Method</th>
               <th className="p-3 text-left">How It Works</th>
               <th className="p-3 text-left">Best For / Strengths</th>
@@ -112,8 +112,8 @@ const DetectionMethodsPage = () => {
       </div>
 
       {/* Key Notes */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Key Notes</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Key Notes</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1">
           {keyNotes.map((note, i) => (
             <li key={i}>{note}</li>

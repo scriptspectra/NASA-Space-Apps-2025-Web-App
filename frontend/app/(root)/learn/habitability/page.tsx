@@ -24,8 +24,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Habitable Zone */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">The Habitable Zone — The “Goldilocks” Region</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">The Habitable Zone — The “Goldilocks” Region</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The Habitable Zone (HZ), also known as the Goldilocks Zone, is the orbital region around a star where conditions are “just right” for liquid water to exist:
         </p>
@@ -40,8 +40,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Key Factors */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Beyond Location: Key Factors for Habitability</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Beyond Location: Key Factors for Habitability</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Planet Size and Composition:</strong> Rocky planets are better candidates than gas giants. Too small, and a planet loses its atmosphere; too large, and it risks becoming a gas giant.</li>
           <li><strong>Atmosphere:</strong> A protective atmosphere regulates temperature, shields against radiation, and enables essential chemistry. Earth’s oxygen-rich air exists because ancient microbes released oxygen billions of years ago.</li>
@@ -52,8 +52,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Biosignatures */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Searching for Biosignatures</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Searching for Biosignatures</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           A planet may be habitable, but how do we know if it’s inhabited? Biosignatures are measurable signs of life’s activity:
         </p>
@@ -71,8 +71,8 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Life in Extreme Places */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Beyond Earth-like: Life in Strange Places</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Beyond Earth-like: Life in Strange Places</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Methane-rich lakes like Titan</li>
           <li>High-temperature atmospheres</li>
@@ -84,10 +84,10 @@ const HabitabilityPage = () => {
       </div>
 
       {/* Summary */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
         <div className="flex items-center mb-2">
-          <Info className="text-[#D4481E] mr-2" />
-          <h2 className="text-2xl font-semibold text-[#D4481E]">The Big Picture</h2>
+          <Info className="text-[#2563EB] mr-2" />
+          <h2 className="text-2xl font-semibold text-[#2563EB]">The Big Picture</h2>
         </div>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           The search for habitability isn’t just about finding another Earth — it’s about expanding our understanding of what it means to be alive. Every exoplanet discovered adds a new piece to the puzzle, showing nature’s inventiveness and diversity.

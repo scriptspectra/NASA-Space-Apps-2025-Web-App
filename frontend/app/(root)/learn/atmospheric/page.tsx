@@ -21,8 +21,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* How Spectroscopy Works */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">How Spectroscopy Works</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">How Spectroscopy Works</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Every atom or molecule absorbs and emits light at characteristic wavelengths. When starlight passes through a planet’s atmosphere (or reflects off its surface), certain wavelengths are absorbed by atmospheric gases. By analyzing these absorption patterns, astronomers can determine:
         </p>
@@ -37,8 +37,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* Types of Spectroscopy */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Types of Spectroscopy for Exoplanets</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Types of Spectroscopy for Exoplanets</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li><strong>Transmission Spectroscopy:</strong> Observes starlight filtered through a planet’s atmosphere during transit, detecting molecules like water vapor, carbon dioxide, and methane.</li>
           <li><strong>Emission Spectroscopy:</strong> Measures light emitted directly by the planet (especially infrared) to study temperature, weather patterns, and heat distribution.</li>
@@ -47,8 +47,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* What We Can Learn */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">What We Can Learn</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">What We Can Learn</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Atmospheric composition: Oxygen, carbon dioxide, methane, water vapor, and other gases</li>
           <li>Temperature and weather: Hot Jupiters can have scorching daysides and freezing nightsides</li>
@@ -61,8 +61,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* Challenges */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Challenges in Atmospheric Analysis</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Challenges in Atmospheric Analysis</h2>
         <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 mb-2">
           <li>Weak signals: Planet light is billions of times fainter than the host star</li>
           <li>Stellar noise: Variability from starspots or flares can confuse data</li>
@@ -72,8 +72,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* Why It Matters */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Why It Matters</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Why It Matters</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           Studying exoplanet atmospheres allows scientists to:
         </p>
@@ -89,8 +89,8 @@ const AtmospherePage = () => {
       </div>
 
       {/* Optional Advanced Insight */}
-      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#D4481E] p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-[#D4481E] mb-2">Advanced Insight (Optional)</h2>
+      <div className="dark:bg-[#2A2A2A] bg-white rounded-md border-l-4 border-[#2563EB] p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-[#2563EB] mb-2">Advanced Insight (Optional)</h2>
         <p className="text-slate-700 dark:text-slate-300 mb-2">
           For readers interested in technical details, the observed spectrum F(λ) of a planet’s atmosphere is analyzed using:
         </p>

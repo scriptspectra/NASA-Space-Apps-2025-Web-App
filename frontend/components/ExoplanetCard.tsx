@@ -30,7 +30,7 @@ export default function ExoplanetCard({ planet }: ExoplanetCardProps) {
       <div className="p-4 dark:bg-[#383838] bg-[#E2E1DC]" >
         <h2 className="text-lg font-medium dark:text-white text-black mb-1">{planet.pl_name}</h2>
         
-        <p className="text-sm mb-2 dark:text-[#CD6E51] text-[#960D10] font-bold">
+        <p className="text-sm mb-2 dark:text-[#2563EB] text-[#960D10] font-bold">
           host star: {planet.hostname}
         </p>
         

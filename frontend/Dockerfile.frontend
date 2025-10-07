@@ -1,11 +1,9 @@
 # Next.js Frontend Dockerfile - Multi-stage build
 # Stage 1: Build stage with all dependencies
-FROM node:20-alpine AS builder
-
-# Set working directory
+FROM node:20-bullseye AS builder
 WORKDIR /app
 
-# Copy package files and install all dependencies (including devDependencies for build)
+# Copy package files and install all dependencies
 COPY package*.json ./
 RUN npm ci
 
@@ -19,22 +17,26 @@ RUN npx prisma generate
 RUN npm run build
 
 # Stage 2: Production stage with minimal dependencies
-FROM node:20-alpine AS runner
-
-# Set working directory
+FROM node:20-bullseye-slim AS runner
 WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Install curl for healthcheck
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Copy package files and install only production dependencies
-COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+COPY --from=builder /app/package*.json ./
+RUN npm ci --production
 
-# Copy Prisma schema and generate client for production
-COPY prisma/ ./prisma/
-RUN npx prisma generate
+# Copy Prisma schema and generate client for production if it exists
+COPY --from=builder /app/prisma ./prisma
+RUN if [ -f prisma/schema.prisma ]; then npx prisma generate; fi
 
-# Copy built application from builder stage
+# Copy built application and configs
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.* ./
 
 # Create non-root user for security
 RUN addgroup --system --gid 1001 nodejs
