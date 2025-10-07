@@ -15,9 +15,13 @@ import Image from 'next/image'
 import ModelImage from './_components/ModelImage'
 import K2Form from './_components/K2Form'
 import KeplerForm from './_components/KeplerForm'
+import { useBackend } from '@/lib/backendContext';
 
 const page = () => {
   const [loading, setLoading] = useState(false);
+  const data = useBackend()
+
+  if(!data) return <div>Loading...</div>
 
   useEffect(() => {
     // Only show loading animation if it hasn't been shown before

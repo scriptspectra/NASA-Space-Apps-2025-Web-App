@@ -6,6 +6,7 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import Sidebar from '@/components/Sidebar'
 import { cn } from '@/lib/utils'
 import { Toaster } from 'sonner'
+import { BackendProvider } from '@/lib/backendContext'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,15 +35,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             enableSystem={true}
             disableTransitionOnChange
           >
-            <Navbar />
-            <div className='hidden md:flex mt-16 w-20 flex-col fixed inset-y-0 z-40'>
-              <Sidebar />
-            </div>
+            <BackendProvider>
+              <Navbar />
+              <div className='hidden md:flex mt-16 w-20 flex-col fixed inset-y-0 z-40'>
+                <Sidebar />
+              </div>
 
-            <main className="pt-16">
-              {children}
-              <Toaster />
-            </main>
+              <main className="pt-16">
+                {children}
+                <Toaster />
+              </main>
+            </BackendProvider>
           </NextThemesProvider>
       </body>
     </html>
